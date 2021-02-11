@@ -1,0 +1,19 @@
+[[class_container]]
+== Class _container_
+
+This class _container_, which is free-standing and not dependent on class _coverage_, establishes a general data type and format independent information unit. Such units are particularly useful when aggregating homogeneous information (such as several coverages) or heterogeneous information (such as coverages annotated with other coverages, features, and metadata).          Container objects can be conveniently queried by XPath when encoded in XML, and by similar ex­ist­ing techniques when encoded in some other format like JSON. This notwithstanding, there is no restriction on the encoding – individual components of an object may be encoded individually in different formats.The definition of the target structure, CIS::Object, is tentatively as general as ever possible. Applications will derive bespoke instantiable subclasses from this abstract class.
+
+[%unnumbered]
+[[req_58]]
+|===
+| Requirement 58
+
+| An object using the _container_ scheme *shall* conform to Figure 13.
+
+|===
+
+[#img_container,reftext='{figure-caption} {counter:figure-num}']
+.UML diagram of CIS::Object structure as per _container_
+image::images/figure13.png[align="center"]
+
+NOTE: This container approach is intended to align with related standards on heterogeneous data and services on them. Information from such objects can be extracted, for example, through the XPath-based retrieval defined in the OGC Web Information Service (WIS) [10].

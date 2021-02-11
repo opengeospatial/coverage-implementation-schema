@@ -1,0 +1,48 @@
+[bibliography]
+== References
+
+* [[[OGC07-011, OGC 07-011]]], _Abstract Specification Topic 6: The Coverage Type and its Subtypes_, version 7.0 (identical to ISO 19123:2005), 2007
+
+* [[[OGC07-036, OGC 07-036]]], _Geography Markup Language (GML) Encoding Standard_, version 3.2.1, 2007
+
+* [[[OGC10-129r1, OGC 10-129r1]]],  _OGC^®^ Geography Markup Language (GML) – Extended schemas and encoding rules_(GML 3.3), version 3.3, 2012
+
+* [[[OGC08-094, OGC 08-094]]],  _OGC^®^ SWE Common Data Model Encoding Standard_, version 2, 2011
+
+* [[[OGC12-000, OGC 12-000]]],  OGC® _SensorML: Model and XML Encoding Standard_, version 2, 2014
+
+* [[[OGC09-146r2, OGC 09-146r2]]],  _GML 3.2.1 Application Schema – Coverages_, version 1.0.1, 2012
+
+* [[[OGC16-083, OGC 16-083]]],  _Coverage__Implementation Schema – ReferenceableGridCoverage Extension_, version 1, 2017
+
+* [[[OGC09-110r4, OGC 09-110r4]]],  _Web Coverage Service (WCS)__Core Interface Standard_, version 2, 2012
+
+* [[[OGC13-102r2, OGC 13-102r2]]],  _Name type specification – Time and index coordinate reference system definitions_ (OGC Policy Document), version 1, 2014
+
+* [[[OGC14-121, OGC 14-121]]],  _Web Information Service (WIS)_, version 1 (unpublished)
+
+* [[[W3CXPath, W3C Recommendation]]],  _W3C Recommendation XML Path Language (XPath)_, version 2, 2007
+
+* [[[W3CXLink, W3C Recommendation]]],  _W3C Recommendation XML Linking Language (XLink)_, version 1, 2001
+
+* [[[W3CURIscheme, W3C Working Draft]]],  _W3C Working Draft The__app: URI scheme_, 2013
+
+* [[[ISO19757-3, ISO/IEC 19757-3:2006]]],  _Information technology – Document Schema Definition Languages (DSDL) – Part 3: Rule-based validation – Schematron_, 2006
+
+* [[[IETF2183, RFC 2183]]], IETF RFC 2183, 1997
+
+* [[[IETF2387, RFC 2387]]], IETF RFC 2387, 1998
+
+* [[[IETF2392, RFC 2392]]],  IETF RFC 2392, 1998
+
+* [[[IETF3986, RFC 3986]]],  IETF RFC 3986, 2005
+
+* [[[IETF7159, 7159 RFC 7159]]],  The JavaScript Object Notation (JSON) Data Interchange Format. https://www.ietf.org/rfc/rfc7159.txt[https://www.ietf.org/rfc/rfc7159.txt], 2014
+
+* [[[W3CJSON-LD, W3C JSON-LD 1.0]]],  A JSON-based Serialization for Linked Data. http://www.w3.org/TR/json-ld/[http://www.w3.org/TR/json-ld/], 2014
+
+* [[[W3Cjson-ld-api, W3C JSON-LD 1.0]]],  Processing Algorithms and API. +
+ &nbsp; http://www.w3.org/TR/json-ld-api[http://www.w3.org/TR/json-ld-api], 2014
+
+* [[[W3Crdf11, W3C RDF 1.1]]], W3C RDF 1.1 Concepts and Abstract Syntax. +
+ https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/[https://www.w3.org/TR/2014/REC-rdf11-concepts-20140225/], 2014

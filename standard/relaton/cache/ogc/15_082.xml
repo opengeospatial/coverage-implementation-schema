@@ -1,0 +1,33 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC GroundWaterML 2 – GW2IE FINAL REPORT</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC GroundWaterML 2 – GW2IE FINAL REPORT</title>
+  <uri type="obp">https://portal.opengeospatial.org/files/?artifact_id=64688</uri>
+  <docidentifier type="OGC">15-082</docidentifier>
+  <date type="published">
+    <on>2016</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Boyan Brodaric</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This document describes a conceptual model, logical model, and GML/XML encoding rules for the exchange of groundwater data.  In addition, this document provides GML/XML encoding examples for guidance. </abstract>
+  <ext>
+    <doctype>engineering-report</doctype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

@@ -1,0 +1,65 @@
+= OGC WaterML 2: Part 4 - GroundWaterML 2 (GWML2)
+:doctype: IS
+:docsubtype: implementation
+:status: Approved
+:committee: technical
+:draft: 3.0
+:abbrev: GWML
+:edition: 2.2.1
+:external-id: http://www.opengis.net/doc/{doctype}/{abbrev}/{edition}
+:docnumber: 19-013
+:received-date: 2019-04-15
+:issued-date: 2019-09-15
+:published-date: 2020-09-22
+:fullname: Boyan Brodaric
+:keywords: ogcdoc, OGC document, groundwater, hydrogeology, aquifer, water well, observation, well construction, groundwater flow, groundwater monitoring, UML, GML, GroundwaterML, GWML2
+:submitting-organizations: Geological Survey of Canada (GSC), Canada; U.S. Geological Survey (USGS), United States of America; Commonwealth Scientific and Industrial Research Organisation (CSIRO), Australia; Bureau of Meteorology (BOM), Australia; Federation University Australia (FedUni), Australia; Bureau de Recherches Géologiques et Minières (BRGM), France; Salzburg University (U Salzburg), Austria
+:docfile: 19-013.adoc
+:mn-document-class: ogc
+:mn-output-extensions: xml,html,doc,pdf
+:local-cache-only:
+:data-uri-image:
+:pdf-uri: ./19-013.pdf
+:xml-uri: ./19-013.xml
+:doc-uri: ./19-013.doc
+
+
+////
+Make sure to complete each included document
+////
+include::sections/clause_0_front_material.adoc[]
+
+include::sections/clause_1_scope.adoc[]
+
+include::sections/clause_2_conformance.adoc[]
+
+include::sections/clause_3_references.adoc[]
+
+include::sections/clause_4_terms_and_definitions.adoc[]
+
+include::sections/clause_5_conventions.adoc[]
+
+include::sections/clause_6_background.adoc[]
+
+include::sections/clause_7_conceptual_model.adoc[]
+
+include::sections/clause_8_logical_model.adoc[]
+
+include::sections/clause_9_requirements_classes.adoc[]
+
+include::sections/clause_10_xml_implementation.adoc[]
+
+////
+add or remove annexes after "A" as necessary
+////
+include::sections/annex-a.adoc[]
+
+
+
+////
+Revision History should be the last annex before the Bibliography
+Bibliography should be the last annex
+////
+include::sections/annex-history.adoc[]
+
+include::sections/annex-bibliography.adoc[]

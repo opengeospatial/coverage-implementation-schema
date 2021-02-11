@@ -1,0 +1,29 @@
+[bibliography]
+[[Bibliography]]
+== Bibliography
+
+* [[[ANS1980,ANS, 1980]]], American Nuclear Society, 1980. American national standard for evaluation of radionuclide transport in groundwater for nuclear power sites. ANSI/ANS-2.17-1980, American Nuclear Society, La Grange Park, Illinois.
+
+* [[[ASCE1987,ASCE, 1987]]], American Society of Civil Engineers, 1987. Ground water management. ASCE Manual and Reports on Engineering Practice No. 40, New York, 263 pp.
+
+* [[[BDLISA2013,BDLISA, 2013]]], BDLISA, 2013. Dictionnaire des données - Référentiel hydrogéologique (Version 2). Retrieved 13 July 2015, from: http://www.sandre.eaufrance.fr/urn.php?urn=urn:sandre:dictionnaire:SAQ:FRA:::ressource:2.0:::pdf
+
+* [[[BoisvertBrodaric2012,Boisvert & Brodaric, 2012]]], Boisvert, B., Brodaric, B., 2012. GroundWater Markup Language (GWML) -- Enabling Groundwater Data Interoperability in Spatial Data Infrastructures. Journal of Hydroinformatics, 14(1):93--107.
+
+* [[[BrodaricBooth2011,Brodaric & Booth, 2011]]], Brodaric, B, Booth, N., 2011. Groundwater Interoperability Experiment, FINAL REPORT. OGC 10-194r3, Open Geospatial Consortium, 48 pp.
+
+* [[[FreezeCherry1979,Freeze & Cherry, 1978]]], Freeze, R.A., Cherry, J.A., 1979. Groundwater. Prentice Hall, Englewood Cliffs, NJ, 604 pp.
+
+* [[[Heath1983,Heath, 1983]]], Heath, R. C., 1983. Basic ground-water hydrology. Water-Supply Paper 2220, U.S. Geological Survey, 86 pp.
+
+* [[[INSPIRE2013,INSPIRE, 2013]]], INSPIRE, 2013. D2.8.II.4 Data Specification on Geology -- Technical Guidelines. D2.8.II.4_v3.0. European Commission, Thematic Working Group Geology, 362 pp., http://inspire.jrc.ec.europa.eu/documents/Data_Specifications/INSPIRE_DataSpecification_GE_v3.0.pdf
+
+* [[[Lohman1972,Lohman, 1972]]], Lohman, S.W., 1972. Definitions of selected ground-water terms, revisions and conceptual refinements. Water Supply Paper 1988, U.S. Geological Survey, 21 pp.
+
+* [[[IGH0556,IGH0556]]], WMO, UNESCO, 2012. Groundwater Divide. In: International Glossary of Hydrology, WMO-No. 385. Geneva, Switzerland, 471 pp. http://webworld.unesco.org/water/ihp/db/glossary/glu/EN/GF0556EN.HTM.
+
+* [[[IGH1397,IGH1397]]], WMO, UNESCO, 2012. Well. In: International Glossary of Hydrology, WMO-No. 385. Geneva, Switzerland, 471 pp. http://webworld.unesco.org/water/ihp/db/glossary/glu/EN/GF1397EN.HTM.
+
+* [[[ISO19101-1,ISO 19101-1:2014]]], Geographic information -- Reference model -- Part 1: Fundamentals
+
+* [[[ISO19101-2,ISO 19101-2]]], Geographic information -- Reference model -- Part 2

@@ -1,0 +1,198 @@
+[[class_grid-transformation_]]
+== Class _grid-transformation_
+
+=== Overview
+
+Class _grid-transformation_ establishes coverages with algorithmically defined grids. Currently one such transformation is defined which is based on SensorML 2.0 [5].
+
+=== General
+
+[%unnumbered]
+[[req_23]]
+|===
+| Requirement 23
+
+| A coverage using the _grid-transformation_ scheme *shall* implement class _grid-regular_.
+
+|===
+
+[%unnumbered]
+[[req_24]]
+|===
+| Requirement 24
+
+| A coverage using the _grid-transformation_ scheme *shall* con­form with Figure 9 and Table 16.
+
+|===
+
+The cases currently supported by this standard – algorithmic transformation and specifically SensorML model – are defined in the Subclauses below.
+
+=== Transformation
+
+Grid definitions in the previous Clauses of this standard are defined through some well-known principle and (comparatively simple) computation methods. In the most general case, however, this is not the case, and only some special-built code – here called a “transformation” – with some particular variable instantiation can determine the direct positions of the grid. A special case of a transformation is provided by SensorML 2.0 [5], in CIS modelled through coverage type CIS::SensorModelCoverage.
+
+It is recommended to ensure that transformations are invertible (i.e., an inverse transformation exists) in order to support the determination of the associated grid location of a given direct position.
+
+[#img_uml_of_cis_grid_transformation,reftext='{figure-caption} {counter:figure-num}']
+.UML diagram of CIS::GeneralGridCoverage structure as per _grid-transformation_
+image::images/figure9.png[align="center"]
+
+.Table :      CIS::TransformationModel structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| axisLabels | List of axes involved in the transformation model | string a| One or more +
+ (mandatory)
+| uomLabels | units of measure in which val­ues along the axes are expressed | string a| One or more +
+ (mandatory)
+
+|===
+
+=== 9.4    SensorML grid
+Aside from the general definition, this standard supports one special case of such a transformation as defined by SensorML 2.0 [5]. Such a sensor model involves two inputs: a sensor model description containing free variables plus a separate set of variable instantiations (Table 17). As the sensor model defines the grid and its direct positions, this transformation effectively represents the coverage domain set.
+
+[#img_uml_of_cis_sensorml,reftext='{figure-caption} {counter:figure-num}']
+.UML diagram of CIS::GeneralGridCoverage structure as per _SensorML_
+image::images/figure10.png[align="center"]
+
+[%unnumbered]
+[[req_25]]
+|===
+| Requirement 25
+
+| In  coverage of type CIS::SensorModelCoverage every CIS::TransformationModel *shall* be of type CIS::TransformationBySensorModel as specified in Figure 10 and Table 17.
+
+|===
+
+.Table :      CIS::TransformationBySensorModel structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| sensorModel | SensorML model yielding the direct positions of the grid a| SML:: +
+ Abstract­Process­PropertyType
+a| One +
+ (mandatory)
+| sensor­Instance | Parameter values for the sensor model | SML:: Abstract­Process­PropertyType a| Zero or one +
+ (optional)
+
+|===
+
+The CIS::TransformationBySensorModel of the SensorML grid inherits attributes uomLabels and axisLabels that will be a directive to the sensor model software for the computed output geo locations.  In general, these attributes will have no effect whatever on sensor model calculations except for the last stage when the output geo locations will be trans­formed from the native units and CRS of the software to the specified units and CRS of the CIS::TransformationBySensorModel.Example 1  The following XML fragment defines the DomainSet of a frame camera sensor image modelled as a CIS::TransformationBySensorModel.
+
+[%unnumbered]
+[source, xml]
+----
+<DomainSet>
+     <GeneralGrid srsName="<strong>http://www.opengis.net/def/crs/EPSG/0/4326</strong>"
+             axisLabels="<strong>Lat Long</strong>">
+         <GridLimits srsName=
+                 "<strong>http://www.opengis.net/def/crs/OGC/0/Index2D</strong>"
+                 axisLabels="<strong>i j</strong>">
+             <IndexAxis axisLabel="<strong>i</strong>" lowerBound="<strong>0</strong>" upperBound="<strong>1919</strong>"/>
+             <IndexAxis axisLabel="<strong>j</strong>" lowerBound="<strong>0</strong>" upperBound="<strong>1079</strong>"/>
+         </GridLimits>
+         <TransformationBySensorModel
+                 uomLabels="<strong>deg deg</strong>" axisLabels="<strong>Lat Long</strong>">
+             <SensorModel xlink:href=
+                 "<strong>http://www.sensorml.com/csmFrame.html</strong>"/>
+             <SensorInstance xlink:href=
+                 "<strong>http://www.sensorml.com/myHDCamera.html</strong>"/>
+         </TransformationBySensorModel>
+     </GeneralGrid>
+ </DomainSet>
+----
+
+Example 2  The following SensorML 2.0 defines parameters of a 2D electro-optical grid of a frame camera sensor, as part of a sensor model description referenced in the SensorModel subelement.
+
+[%unnumbered]
+[source, xml]
+----
+<SensorModel>
+     <swe:field name="pixelGrid">
+         <swe:DataRecord>
+             <swe:label>Pixel Grid Characteristics</swe:label>
+             <swe:field name="numberOfRows">
+                 <swe:Count definition=
+                       "http://sensorml.com/ont/csm/property/NROWS">
+                     <swe:label>Number of Rows</swe:label>
+                 </swe:Count>
+             </swe:field>
+             <swe:field name="numberOfColumns">
+                <swe:Count definition=
+                       "http://sensorml.com/ont/csm/property/NCOLS">
+                     <swe:label>Number of Columns</swe:label>
+                 </swe:Count>
+             </swe:field>
+             <swe:field name="rowSpacing">
+                 <swe:Quantity definition=
+                      "http://sensorml.com/ont/csm/property/ROW_SPACING">
+                     <swe:label>Row Spacing</swe:label>
+                     <swe:uom code="mm"/>
+                 </swe:Quantity>
+             </swe:field>
+             <swe:field name="columnSpacing">
+                 <swe:Quantity definition=
+                      "http://sensorml.com/ont/csm/property/COL_SPACING">
+                     <swe:label>Column Spacing</swe:label>
+                     <swe:uom code="mm"/>
+                 </swe:Quantity>
+             </swe:field>
+         </swe:DataRecord>
+     </swe:field>
+</sensorModel>
+----
+
+Example 3  The following SensorML 2.0 fragment sets parameters of a 2D electro-optical grid of a frame camera sensor, as part of a sensor instance description referenced in the sensorInstance sub-ele­ment of CIS::TransformationBySensorModel, coherent with the parameter definitions of the previous example.
+
+[%unnumbered]
+[source, xml]
+----
+<sensorInstance>
+     <sml:configuration>
+         <sml:Settings>
+             <sml:setValue ref="<strong>parameters/csm/pixelGrid/numberOfRows</strong>">
+                 <strong>1080
+             </strong></sml:setValue>
+             <sml:setValue ref="<strong>parameters/csm/pixelGrid/numberOfColumns</strong>">
+                 <strong>1920
+             </strong></sml:setValue>
+             <sml:setValue ref="<strong>parameters/csm/pixelGrid/rowSpacing"></strong>
+                 <strong>0.0074
+             </strong></sml:setValue>
+             <sml:setValue ref="<strong>parameters/csm/pixelGrid/columnSpacing</strong>">
+                 <strong>0.0074
+             </strong></sml:setValue>
+         </sml:Settings>
+     </sml:configuration>
+ <sensorInstance>
+----
+
+Example 4  The following SensorML 2.0 snippet defines a 2D grid of a sensor model image through a list of inputs con­sistent with the sensorModel and sensorInstance sub­elements above.
+
+[%unnumbered]
+[source, xml]
+----
+<sml:inputs>
+   <sml:InputList>
+     <sml:input name="pixelGridCoordinates">
+       <swe:Vector referenceFrame=
+             "http://www.opengis.net/def/crs/OGC/0/IndexCRS2D">
+         <swe:coordinate name="r">
+           <swe:Quantity definition=
+               "http://sensorml.com/def/property/ImageRowPosition">
+             <swe:label>Row Position</swe:label>
+               <swe:uom xlink:href=
+                   "http://sensorml.com/def/property/pixel"/>
+           </swe:Quantity>
+         </swe:coordinate>
+         <swe:coordinate name="c">
+           <swe:Quantity definition=
+               "http://sensorml.com/def/property/ImageColumnPosition">
+             <swe:label>Column Position</swe:label>
+               <swe:uom xlink:href=
+                   "http://sensorml.com/def/property/pixel"/>
+           </swe:Quantity>
+         </swe:coordinate>
+       </swe:Vector>
+     </sml:input>
+   </sml:InputList>
+ </sml:inputs>
+----

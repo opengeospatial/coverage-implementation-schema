@@ -1,0 +1,38 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-intro" format="text/plain" language="en" script="Latn">OGC Coverage Implementation Schema</title>
+  <title type="title-main" format="text/plain" language="en" script="Latn">ReferenceableGridCoverage Extension with Corrigendum</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC Coverage Implementation Schema - ReferenceableGridCoverage Extension with Corrigendum</title>
+  <uri type="obp">http://docs.opengeospatial.org/is/16-083r3/16-083r3.html</uri>
+  <docidentifier type="OGC">16-083r3</docidentifier>
+  <date type="published">
+    <on>2019-01-20</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Eric Hirschorn</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>3</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">The OGC GML Application Schema - Coverages (“GMLCOV”) version 1.0 [OGC 09-146r2], recently renamed the OGC Coverage Implementation Schema version 1.0, provides a ReferenceableGridCoverage element for representing coverages on a referenceable grid.  However, GMLCOV provides no instantiable subtypes of a critical sub-element of ReferenceableGridCoverage, GMLCOV::AbstractReferenceableGrid.  To make use of ReferenceableGridCoverage, an extension deriving from GMLCOV would need to be developed.  GML 3.3 is not such an extension of GMLCOV, as it is built independently from GMLCOV.  Use of the instantiable referenceable grid elements of GML 3.3 with ReferenceableGridCoverage violates Requirement 14 of GMLCOV 1.0 and Requirement 24 of the OGC Modular Specification[1].&#13;
+&#13;
+This OGC Coverage Implementation Schema - ReferenceableGridCoverage Extension provides a set of referenceable grid elements for use as sub-elements of ReferenceableGridCoverage.  Three of these elements have been adapted from GML 3.3, while a fourth emerged from work on a Testbed-11 Engineering Report[2].</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

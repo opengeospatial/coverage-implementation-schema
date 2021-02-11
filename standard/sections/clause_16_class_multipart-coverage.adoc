@@ -1,0 +1,104 @@
+[[class_multipart-coverage]]
+== Class _multipart-coverage_
+
+=== Overview
+
+Class _multipart-coverage_ establishes how coverages can be packaged into multiple files, meaning that the coverage document (henceforth referred to as the “first part”) has one or more components shifted out into separate documents (henceforth called “further parts”). To maintain connection between the parts, the first part references all other parts through URLs (which may be local). Packaging can be done through any appropriate container format. Additionally, parts can be stored outside the package, referenced by URLs.
+
+NOTE: Among the suitable container formats are multipart MIME [4], GMLJP2, zip, and tar. Out of those, MIME is normatively defined here.
+
+Such a splitting is particularly useful for the range set so as to allow a different, possibly more efficient encoding of this (typically) bulk of information. However, with the same argument other parts of the coverage (such as a large domain set with displaced axes) can be shifted into further parts as well.
+
+To achieve a complete representation of the coverage, the encoding used in the first part must be “informationally complete,” i.e.: able to hold the complete coverage information. Further, it must be allow expression of references (which replace the substructure – such as the range set – to be shifted into a separate part). Notably, the format used in the further parts does not need to be informationally complete with respect to coverage metadata; however, it must be able to represent the values factored out of the first-part document.
+
+NOTE: Among the list of suitable formats for the first part are GML and JSON. Image/data formats like GeoTIFF and NetCDF are suitable formats for the further parts.
+
+[%unnumbered]
+[[req_42]]
+|===
+| Requirement 42
+
+| A coverage using the _multipart-coverage_ scheme *shall* implement class _coverage_.
+
+|===
+
+[%unnumbered]
+[[req_43]]
+|===
+| Requirement 43
+
+| A coverage encoded as a multipart MIME message *shall* adhere to IETF RFC 2387 [16] in that it consists of  a multipart MIME document with a Content-Type parameter of value “Multipart/Related” and a Type parameter containing a MIME type identifier match­ing the encoding of the first (“root”) part; references to further parts located in the same container as the first-part coverage shall use a local “cid” (Content-ID) URL as specified by IETF RFC 2392 [17].
+
+|===
+NOTE: The MIME type identifier of GML, for example, is “application/gml+xml”.
+
+NOTE: In GMLCOV/CIS 1.0 a ContentDisposition parameter ofvalue “inline” was required. This is not required any more in CIS 1.1.
+
+References used in coverage parts follow common URI standards for syntax [18] and semantics [12].
+
+=== Root part
+The _root part_ of a multipart coverage consists of the top-level structure of the coverage. Each container format needs to individually determine how this root part is represented.
+
+Example    In Multipart / MIME, this is the first item in the stream. In a zip file, it might be a manifest file. Each format needs establish unambiguous conventions, such as a particular file name in a zip archive.
+
+[%unnumbered]
+[[req_44]]
+|===
+| Requirement 44
+
+| In a coverage encoded as per class _multipart-coverage_, the root part *shall* be a complete coverage as per this standard, but with one or more components replaced by a reference to the further parts of the multipart message where these components replaced get manifested.
+
+|===
+Example    In a GML encoded coverage, a reference can be expressed through a fileReference element.
+
+NOTE: Each part of the message can be encoded in different formats individually and independently.
+
+[%unnumbered]
+[[req_45]]
+|===
+| Requirement 45
+
+| In a coverage encoded as per class _multipart-coverage_, references from the first message part (containing the coverage root part) to sub­sequent parts *shall* use the method foreseen by the container format to achieve an un­ambiguous identification of the further parts located in the same container as the first-part coverage.
+
+|===
+NOTE:  Generally, syntax and semantics of the reference may depend on the environments in which the coverage cont­aining the reference, on the one hand, and the item referenced, on the other hand, reside: in a multipart MIME message, this will be cid identifiers; in a zip file, identification will be done through file names and paths relative to the zip directory root; this hierarchical scheme would allow relative references. In a GMLJP2 file, identification will be done through XML identifiers, i.e., locally unique gml:id attributes. If keeping a sandboxed environment is important, e.g., for security reasons, the W3C app: URI scheme [13] might be used.
+
+NOTE: A reference may be temporarily or permanently unresolvable. In case of an unresolvable reference, the coverage may still be reconstructable through other means – for example, treatment of CRSs given by some well-known URI may be hardwired in an application handling coverages.
+
+=== Further parts
+The root part may, instead of containing coverage constituents verbatim, shift such constituents into subsequent parts of the multipart document and reference them.
+
+[%unnumbered]
+[[req_46]]
+|===
+| Requirement 46
+
+| In a coverage encoded as per class _multipart-coverage_, any part referenced from the root part *shall* contain the complete information required to substitute the reference and obtain a complete coverage as per class _coverage_.
+
+|===
+
+NOTE: In GMLCOV/CIS 1.0, only one extra part was foreseen exclusively for the range set. Starting with CIS 1.1 more than one coverage component can be extracted into a separate part. Besides the (often large) range set, another candidate for a separate part is the domain set in a coverage with displaced axes, as such a domain set may become just as large as the range set. In a Discrete Coverage, the domain set typically is even larger than the range set.Example    The following  MIME message represents a valid multipart coverage structure with the root part encoded in GML and the second part encoded in TIFF (assuming all “…” substituted by proper XML and with a proper TIFF stream instead of “…binary TIFF data…”):
+
+[%unnumbered]
+[source, text]
+----
+Content-Type: Multipart/Related; boundary=cis;
+        start=“GML-Part”
+        type=“application/gml+xml”
+ 
+–cis
+Content-type: application/gml+xml
+Content-ID: GML-Part
+ 
+<?xml version=“1.0” encoding=“UTF-8”?>
+…GML data…
+–cis
+Content-Type: image/tiff
+Content-Description: coverage data
+Content-Transfer-Encoding: binary
+Content-ID: grey.tif
+Content-Disposition: inline
+
+ …binary TIFF data…
+–cis–
+----

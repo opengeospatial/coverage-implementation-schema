@@ -1,0 +1,130 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="main" format="text/plain" language="en" script="Latn">JSON-LD 1.0</title>
+  <title format="text/plain" language="en" script="Latn">A JSON-based Serialization for Linked Data</title>
+  <uri type="src">https://www.w3.org/TR/2020/SPSD-json-ld-20201103/</uri>
+  <docidentifier type="W3C">SPSD-json-ld-20201103</docidentifier>
+  <date type="published">
+    <on>2020-11-03</on>
+  </date>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename>Manu Sporny</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Digital Bazaar</name>
+          <uri>http://digitalbazaar.com/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename>Gregg Kellogg</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Kellogg Associates</name>
+          <uri>http://kellogg-assoc.com/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename>Markus Lanthaler</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Graz University of Technology</name>
+          <uri>http://www.tugraz.at/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Manu Sporny</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Digital Bazaar</name>
+          <uri>http://digitalbazaar.com/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Dave Longley</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Digital Bazaar</name>
+          <uri>http://digitalbazaar.com/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Gregg Kellogg</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Kellogg Associates</name>
+          <uri>http://kellogg-assoc.com/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Markus Lanthaler</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Graz University of Technology</name>
+          <uri>http://www.tugraz.at/</uri>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Niklas Lindström</completename>
+      </name>
+    </person>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">JSON is a useful data serialization and messaging format.
+    This specification defines JSON-LD, a JSON-based format to serialize
+    Linked Data. The syntax is designed to easily integrate into deployed
+    systems that already use JSON, and provides a smooth upgrade path from
+    JSON to JSON-LD.
+    It is primarily intended to be a way to use Linked Data in Web-based
+    programming environments, to build interoperable Web services, and to
+    store Linked Data in JSON-based storage engines.</abstract>
+  <keyword>Data</keyword>
+  <ext>
+    <doctype>retired</doctype>
+  </ext>
+</bibdata>

@@ -1,0 +1,69 @@
+[[class_gml-coverage]]
+== Class _gml-coverage_
+
+=== Overview
+Class _gml-coverage_ establishes how coverages, as defined in this standard, are represented in the GML encoding format.          To make the GML schema of CIS more lightweight and self-contained, several GML definitions have been migrated into the CIS schema, at the same time simplifying these very general definitions for the particular use with coverages. Further, highly repetitive elements have been given particularly short to keep file size low. Therefore, strictly speaking the GML conformance class of CIS 1.1 is not a GML Application Profile anymore in the sense as defined in the GML standard.The following convention has been adopted throughout CIS 1.1 for _gml-coverage_:
+
+* Element and type names are in camel case with first letter capitalized
+* Attribute names are in camel case with first letter lowercase.
+
+This is a change over the corresponding schema definitions in GML 3.2.1 and GMLCOV/CIS 1.0 (which adheres to GML 3.2.1) where both lower and upper case can appear in element names, depending on their role in the schema. The reason for this change is to achieve coherent upper/lower case conventions across the XML, JSON, and RDF encoding of CIS as well as to simplify XML handling towards common XML Schema practices.
+
+[%unnumbered]
+[[req_30]]
+|===
+| Requirement 30
+
+| A coverage using the _gml-coverage_ scheme *shall* implement class _coverage_
+
+|===
+
+[%unnumbered]
+[[req_31]]
+|===
+| Requirement 31
+
+| In a coverage encoded in GML, the coverage document represented*shall* conform to the XML Schema definitions and Schematron rules being part of this standard.
+
+|===
+Note 1       The XML Schema contained in this standard does not copy the abstract class definitions of Figure 2; rather, it deviates by not defining namespaces for GMLCOV/CIS 1.0 and GML 3.3. This allows applications which utilize only CIS 1.1 coverages to avoid pulling massive additional GML Schema files during validation.Note 2       Coverage identifiers, as per GML are represented as gml:id attributes of XML type NCName which has constraints in the characters allowed. Therefore, naming of coverages is constrained, too, to such identifiers when using GML encoding.This GML encoding is prepared for split representations where different parts of a coverage reside in different objects (such as files or databases), individually encoded. For example, domain set, range type, and range set each can independently be given by a URL; the same is possible for metadata – although it does not contain a file reference explicitly, its \<any\> definition allows for a URL as well.Each range value is either atomic or composed from atomic values, each individually enclosed in an element.
+
+[%unnumbered]
+[[req_32]]
+|===
+| Requirement 32
+
+| In a coverage encoded in GML, each atomic range value (i.e., cis:v element) *shall* contain exactly one value.
+
+|===
+
+Such values will normally be numbers, encoded dates (as per ISO 8601), etc. The exact type definition for each range value component is governed by the range type.Example    The XML Schema being part of this specification contains several examples for different coverages encoded in XML.References in GML are indicated through type xs:anyURI which specifies general syntax and semantics of URIs up to, and excluding, resolution of the fragment part (i.e., the URI part starting with a number sign, “#”). Fragment resolution is specified an­alogously to HTML:
+
+[%unnumbered]
+[[req_33]]
+|===
+| Requirement 33
+
+| In a URI reference to a coverage component instantiating class _gml-coverage_ the URI frag­ment component, if present, *shall* identify the value of a gml:id attribute in the target XML resource.
+
+|===
+Example    The following XML snippet demonstrates a possible way to incorporate a CRS definition within the coverage document:
+
+[%unnumbered]
+[source, xml]
+----
+<GeneralGridCoverage>
+   <DomainSet>
+     <GeneralGrid srsName="#myCrs"/>
+     ...   </DomainSet>
+   ...   <Metadata>
+     <myLocalCrs gml:id="myCrs">
+       here goes my CRS definition in GML, WKT, or otherwise
+     </myLocalCrs>
+   </Metadata>
+ </GeneralGridCoverage>
+----
+
+=== Coverage representation
+
+Coverages can be encoded in any suitable format. One such format is established in GML 3.2.1 [2] stating that domain set items are mapped to range set items in XML document order or file sequence order, respectively.Note          As this statement above is not conformance testable no corresponding normative requirement is established.

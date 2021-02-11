@@ -1,0 +1,35 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">TimeseriesML 1.0 – XML Encoding of the Timeseries Profile of Observations and Measurements</title>
+  <title type="main" format="text/plain" language="en" script="Latn">TimeseriesML 1.0 – XML Encoding of the Timeseries Profile of Observations and Measurements</title>
+  <uri type="obp">http://docs.opengeospatial.org/is/15-042r3/15-042r3.html</uri>
+  <docidentifier type="OGC">15-042r3</docidentifier>
+  <date type="published">
+    <on>2016</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>James Tomkins and Dominic Lowe</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>3</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">TimeseriesML 1.0 defines an XML encoding that implements the OGC Timeseries Profile of Observations and Measurements [OGC 15-043r3], with the intent of allowing the exchange of such data sets across information systems. Through the use of existing OGC standards, it aims at being an interoperable exchange format that may be re-used to address a range of data exchange requirements.</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

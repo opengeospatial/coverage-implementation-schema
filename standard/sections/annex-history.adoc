@@ -1,0 +1,17 @@
+[appendix]
+[[revision_history]]
+== Revision History
+
+|===
+| Date | Release | Author | Paragraph modified | Description
+
+| 2015-07-23 | 1.1.0 | Peter Baumann | All | Reworked for 1.1, based on 1.0
+| 2015-11-22 | 1.1.0 | Peter Baumann | Annex A | Added test suite
+| 2016-05-24 | 1.1.0 a| Peter Baumann, +
+ Eric Hirschorn, +
+ Joan Maso
+| All | Reflected RFC comments and further stakeholder input; added JSON and JSON-LD/RDF
+| 2016-11-27 | 1.1.0 | Peter Baumann | Intro, Annex B a| More background explanations, +
+ resolution of TC vote comments
+
+|===

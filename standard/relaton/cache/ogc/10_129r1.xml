@@ -1,0 +1,36 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-intro" format="text/plain" language="en" script="Latn">OGC® Geography Markup Language (GML)</title>
+  <title type="title-main" format="text/plain" language="en" script="Latn">Extended schemas and encoding rules</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC® Geography Markup Language (GML) - Extended schemas and encoding rules</title>
+  <uri type="obp">https://portal.ogc.org/files/?artifact_id=46568</uri>
+  <docidentifier type="OGC">10-129r1</docidentifier>
+  <date type="published">
+    <on>2012-02-07</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Clemens Portele</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">The Geography Markup Language (GML) is an XML encoding in compliance with ISO 19118 for the transport and storage of geographic information modelled in accordance with the conceptual modelling framework used in the ISO 19100 series of International Standards and including both the spatial and non-spatial properties of geographic features.</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

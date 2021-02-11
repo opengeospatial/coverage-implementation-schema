@@ -1,0 +1,24 @@
+[[class_discrete-mesh]]
+== Class _discrete-mesh_
+
+This class _discrete-mesh_ establishes those discrete coverages which have a non-zero topological dimension, thereby extending class _discrete-pointcloud_. As such, it defines coverages consisting of curve, surface, and solid bundles, resp.
+
+[%unnumbered]
+[[req_28]]
+|===
+| Requirement 28
+
+| A coverage using the _discrete-mesh_ scheme *shall* implement class _discrete-pointcloud_.
+
+|===
+
+[%unnumbered]
+[[req_29]]
+|===
+| Requirement 29
+
+| A coverage using the _discrete-mesh_ scheme *shall* implement GMLCOV/CIS 1.0 coverage types CIS10::MultiCurveCoverage, CIS10::MultiSurfaceCoverage, and CIS10::MultiSolidCoverage.
+
+|===
+
+While this definition is based on the _conceptual_ model of GML it does not preclude a GML _encoding_ (through class _gml-coverage_); the same structures may be represented in any other suitable format (using class _other-format-coverage_).

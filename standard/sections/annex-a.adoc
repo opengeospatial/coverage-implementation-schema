@@ -1,0 +1,549 @@
+[[annex-a]]
+[appendix]
+[[ats]]
+== Annex : Abstract Test Suite (Normative)
+
+This Annex specifies an Abstract Test Suite which shall be passed in completeness by any implementation claiming conformance with this Application Schema.The test approach conceptually consists of two steps:
+* Transcode the coverage from its original format into one of the formats directly addressed by this standard[[_ftnref4]], following the mapping rules defined for the particular original format on hand[[_ftnref5]].
+* Perform all conformance tests on this transcoded coverage representation. Tests fail/succeed if they fail/succeed, resp., on this transcoded representation.
+
+A concrete test implementation may choose a different strategy (may be for efficiency reasons) as long as the tests behave as indicated in this Abstract Test Suite.
+
+=== Conformance Test Class: _coverage_
+
+|===
+| Test Purpose: | Requirement 1
+
+| *Test method:* a| Test the coverage under test:
+* If the coverage passes the tests of CIS 1.1 core conformance class _coverage_ (disregarding this Requirement 2), pass test.
+* Otherwise, if the coverage passes the tests of GMLCOV/CIS 1.0 core conformance class _gml-coverage_, pass test.
+* Otherwise, if the coverage is a gridded coverage and it passes the tests of GMLCOV/CIS 1.0 core conformance class _gml-coverage_ with a grid structure as defined in GML 3.3, pass test.
+* Otherwise, fail test.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 2
+
+| *Test method:* a| Determine the encoding of the coverage under test:
+
+* If the encoding is GML, perform the conformance test defined for class _gml-coverage_.
+* Otherwise, if the encoding is in some other format:
+
+
+** Convert the coverage into one of the formats directly addressed by this CIS standard, according to the coverage mapping defined for the corresponding encoding standard;
+** perform the conformance test defined of the resp. format;
+** perform the conformance test defined for class _other-format-coverage_.
+* Otherwise, fail test.
+Test passes overall if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 3
+
+| *Test method:* a| Verify that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Verify that all necessary elements are present (with the exception described in class _other-format-coverage_).Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 4
+
+| *Test method:* a| From the coverage under test extract the envelope, if present.
+
+* If none present: pass test.
+* If present: verify that it consists of a CIS::EnvelopeByAxis element with the required structure.
+Test passes if all constraints evaluate to true.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 5
+
+| *Test method:* a| From the coverage under test extract the envelope, if present.
+
+* If none present: pass test.
+* If present: verify that all constraints are fulfilled.
+Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 6
+
+| *Test method:* a| From the coverage under test extract the envelope, if present.
+
+* If none present: pass test.
+* If present: verify constraint for all occurrences of axisExtent.
+Test passes if all constraints evaluate to true.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 7
+
+| *Test method:* a| From the coverage under test extract the envelope, if present.
+
+* If none present: pass test.
+* If present: If the envelope uses a CRS different from the Domain­Set then first transform the envelope CRS coordinates into the DomainSet CRS. Check that the envelope describes a bounding box around the DomainSet, taking into account all axes of the DomainSet CRS.
+Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 8
+
+| *Test method:* a| In the coverage under test, verify that for each axis in the domain set the coordinates of all direct positions are within the closed interval [lower­Bound, upperBound] indicated in the corresponding axis extent.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 59
+
+| *Test method:* a| In the coverage under test, inspect the coherence of the domain set axis definitions with the CRS referenced, as required.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 9
+
+| *Test method:* a| In the coverage under test, inspect the RangeType component and verify that the structure is as required.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 10
+
+| *Test method:* a| In the coverage under test, inspect all SWE Common Abstract­Simple­Component subtypes in a range type structure and verify that no value component is present[[_ftnref6]].Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 11
+
+| *Test method:* a| In the coverage under test, inspect the range type structure and verify that each SWE Common Abstract­Simple­Component item is of the allowed subtypes listed.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 12
+
+| *Test method:* a| In the coverage under test, verify that for each location defined in the domain set there is exactly one corresponding value in the range set.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 13
+
+| *Test method:* a| In the coverage under test, verify for each range value tuple:·       Number of tuple components adheres to range structure definition.·       Data type (including unit of measure, where indicated) of each range value conforms to the corresponding data type specification in the range structure definition.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _grid-regular_
+
+|===
+| Test Purpose: | Requirement 14
+
+| *Test method:* a| The coverage under test must pass all tests of class _coverage_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 15
+
+| *Test method:* a| Check that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Check that all necessary elements are present.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 16
+
+| *Test method:* a| Check that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Check that all necessary elements are present.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 17
+
+| *Test method:* a| In the coverage under test, verify that the requirement is met by each regular axis.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 18
+
+| *Test method:* a| In the coverage under test, verify:
+
+* if the coverage’s domain set contains a CIS::GeneralGrid then verify whether the equation for the number of direct positions in the grid is fulfilled.
+* Otherwise, pass test.
+Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _grid-irregular_
+
+|===
+| Test Purpose: | Requirement 19
+
+| *Test method:* a| The coverage under test must pass all tests of class _grid-regular_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 20
+
+| *Test method:* a| Check that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Check that all necessary elements are present.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 21
+
+| *Test method:* a| In the coverage under test, verify monotonicity for every axis of type CIS::IrregularAxis in the domain set.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 22
+
+| *Test method:* a| In the coverage under test, verify that all displacement axes have pairwise different names.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _grid-transformation_
+
+|===
+| Test Purpose: | Requirement 23
+
+| *Test method:* a| The coverage under test must pass all tests of class _grid-regular_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 24
+
+| *Test method:* a| Check that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Check that all necessary elements are present.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 25
+
+| *Test method:* a| In the coverage under test, verify:
+
+* If its type is CIS::SensorModelCoverage, verify that each axis in the domain set is of type CIS::TransformationAxis and that there is exactly one CIS::TransformationModel.
+* Otherwise, pass test.
+Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _discrete-pointcloud_
+
+|===
+| Test Purpose: | Requirement 26
+
+| *Test method:* a| The coverage under test must pass all tests of class _coverage_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 27
+
+| *Test method:* a| Check that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Check that all necessary elements are present.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _discrete-mesh_
+
+|===
+| Test Purpose: | Requirement 28
+
+| *Test method:* a| The coverage under test must pass all tests of class _discrete-pointcloud_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 29
+
+| *Test method:* a| Check that the coverage under test conforms with one of the coverage types listed.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _gml-coverage_
+
+|===
+| Test Purpose: | Requirement 30
+
+| *Test method:* a| The coverage under test must pass all tests of class _coverage_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 31
+
+| *Test method:* a| In the coverage under test, if it is encoded in XML then verify that the document body validates against the schema and the Schematron rules being part of this standard.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 32
+
+| *Test method:* a| In the coverage under test, verify for each that each element contains exactly one value conforming to the coverage’s range type definition.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 33
+
+| *Test method:* a| In the coverage under test, verify for each reference targeting an XML document that the fragment, if present, identifies a gml:id attribute in the target document.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _json-coverage_
+
+|===
+| Test Purpose: | Requirement 34
+
+| *Test method:* a| The coverage under test must pass all tests of class _coverage_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 35
+
+| *Test method:* a| In the coverage under test, if it is encoded in JSON then verify that the document conforms to IETF RFC7159.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 36
+
+| *Test method:* a| In the coverage under test, if it is encoded in JSON then verify that the document body validates against the schema being part of this standard.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _rdf-coverage_
+
+|===
+| Test Purpose: | Requirement 37
+
+| *Test method:* a| In the coverage under test, if it is encoded in RDF then verify that the document conforms to W3C RDF 1.1 and can be derived from a JSON-LD encoded coverage as defined in this conformance class and W3C JSON-LD version 1.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 38
+
+| *Test method:* a| In the coverage under test, if it is encoded in JSON-LD then verify that the document links to the @context documents being part of this standard for the root object and the objects DomainSet, RangeSet, RangeType, envelope and partitionSet if these objects are present.Test passes if all links required are present.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 39
+
+| *Test method:* a| In the coverage under test, if it is encoded in JSON-LD then verify that all abbreviated namespaces for identifiers are defined in a @context sectionTest passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 40
+
+| *Test method:* a| In the coverage under test, if it is encoded in JSON-LD then verify that all objects in the JSON document have two properties with the name “id” and “type”. In addition, verify that the “id” values use an abbreviated namespace and “type” values do not.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _other-format-coverage_
+
+|===
+| Test Purpose: | Requirement 41
+
+| *Test method:* a| The coverage under test must pass all tests of class _coverage_.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _multipart-coverage_
+
+|===
+| Test Purpose: | Requirement 42
+
+| *Test method:* | The coverage under test must pass all tests of class _coverage_.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 43
+
+| *Test method:* a| In the coverage under test, verify:
+
+* If it is encoded as a multipart message, verify all MIME conditions. Test passes if all partial tests pass.
+* Otherwise, pass test.
+Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 44
+
+| *Test method:* a| In the coverage under test, verify:
+
+* If it is encoded in a multipart message, extract the first part. Substitute all references from this part into subsequent parts of the same message by the resp. message contents. Verify that there are no dangling references and that the resulting document is a valid coverage by applying all tests required by this conformance class _multipart-coverage_.
+* Otherwise, pass test.
+Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 45
+
+| *Test method:* a| In the coverage under test, verify:
+
+* If it is encoded in a multipart message, verify that all references into subsequent parts are valid (i.e., no dangling links) in accordance with the container format used.
+* Otherwise, pass test.
+Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 46
+
+| *Test method:* a| In the coverage under test, replace all references by the reference target (while decoding the target format appropriately). If no error occurs, perform tests of class _coverage_ on the resulting coverage.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _coverage-partitioning_
+
+|===
+| Test Purpose: | Requirement 47
+
+| *Test method:* a| The coverage under test must pass all tests of class _coverage_.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 48
+
+| *Test method:* a| Check that the coverage under test contains the information structures defined by this requirement. This involves checks against the complete UML model, including classes, attributes and their values, associations, multiplicities, and further constraints. Check that all necessary elements are present.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 49
+
+| *Test method:* a| In the coverage under test, verify all partition references do not form a circle, neither through directly referencing itself nor indirectly through a circular reference chain.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 50
+
+| *Test method:* a| In the coverage under test, verify for each sub-coverage referenced in a partition, that the super/sub-coverage CRS condition holds.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 51
+
+| *Test method:* a| In the coverage under test, verify for each partition that all axes fulfil the constraint required.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 52
+
+| *Test method:* a| In the coverage under test, verify for each partition that all axes fulfil the constraint required.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 53
+
+| *Test method:* a| In the coverage under test, verify for each partition that the constraint required holds.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 54
+
+| *Test method:* a| In the coverage under test, determine the set of all partition and value components. Verify that for any two components in this set their extent is disjoint for each range component.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 55
+
+| *Test method:* a| In the coverage under test, verify:
+
+* If there is at least one direct position in the domain set of the coverage for which no range value is stored: verify that a least one null value is defined in the range set.
+* Otherwise, pass test.
+Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 56
+
+| *Test method:* a| In the coverage under test, verify that each partition’s range type is a subset of the coverage under test, with any eventual range component name translation duly applied.Test passes if all detail checks pass.
+
+|===
+
+
+|===
+| Test Purpose: | Requirement 57
+
+| *Test method:* a| In the coverage under test, check whether there is a value missing for any range type component. If such a gap exists, verify that the range type has at least one null value defined for the range component in which this gap occurs.Test passes if all detail checks pass.
+
+|===
+
+=== Conformance Test Class: _container_
+
+|===
+| Test Purpose: | Requirement 58
+
+| *Test method:* a| On the object under test, no tests are defined in this standard (structural constraints will be added by applications instantiating this scheme).Test passes always.
+
+|===

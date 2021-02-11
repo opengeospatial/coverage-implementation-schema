@@ -1,0 +1,47 @@
+[appendix,obligation="informative"]
+[[other_standards]]
+== Annex : Relation to Other Standards (Non-Normative)
+
+=== Abstract Topic 6 / ISO 19123
+ISO 19123 (which is identical to OGC Abstract Topic 6 [1]) defines an abstract coverage model. This model tentatively is general and abstract; as a consequence, different and incompatible coverage implementations are possible. The OGC Coverage Implementation Schema, therefore, complements it with a concrete coverage structure definition which can be conformance tested and allows for interoperable implementations.The following table correlates ISO 19123 and GMLCOV/CIS 1.0 and CIS 1.1 coverage types. Note that continuous coverages are modelled separately in ISO 19123 whereas in CIS they consist of discrete coverages together with some interpolation method; typically, this will be specified in the interpolation method associated with the range type (starting CIS 1.1); alternatively, the coverage function can express interpolation (starting GMLCOV/CIS 1.0).Those coverage types which represent point clouds and general meshes (i.e., all non-gridded coverages) are consistent with the modelling introduced by GML 3.2.1, Consequently, all corresponding ISO 19123 types are implemented by CIS types MultiPointCoverage, MultiCurveCoverage, MultiSurfaceCoverage, and MultiSolidCoverage.
+
+.Correspondence between ISO 19123 and CIS coverage types
+|===
+h| ISO 19123:2003 coverage type h| CIS coverage type
+| CV\_Coverage | Coverage (CIS 1.0 or 1.1)
+| CV\_DiscreteCoverage | Coverage (CIS 1.0 or 1.1)
+| CV\_DiscretePointCoverage | MultiPointCoverage (CIS 1.0 or 1.1 with no interpolation method)
+| CV\_DiscreteGridPointCoverage a| GeneralGridCoverage (CIS 1.1 with no interpolation method) +
+ or GridCoverage / RectifiedGridCoverage / ReferenceableGridCoverage (CIS 1.0)
+| CV\_DiscreteCurveCoverage | MultiCurveCoverage (CIS 1.0 or 1.1) with no interpolation method
+| CV\_DiscreteSurfaceCoverage | MultiSurfaceCoverage (CIS 1.0 or 1.1) with no interpolation method
+| CV\_DiscreteSolidCoverage | MultiSolidCoverage (CIS 1.0 or 1.1) with no interpolation method
+| CV\_ContinuousCoverage | Coverage (CIS 1.0 or 1.1) with at least one interpolation method
+| CV\_ContinuousQuadrilateralGridCoverage | GeneralGridCoverage (CIS 1.1) with at least one interpolation method
+| CV\_ThiessenPolygonCoverage | MultiSurfaceCoverage (CIS 1.0 or 1.1) with at least one interpolation method
+| CV\_HexagonalGridCoverage | GeneralGridCoverage (CIS 1.1) with at least one interpolation method
+| CV\_SegmentedCurveCoverage | MultiCurveCoverage (CIS 1.0 or 1.1) with at least one interpolation method
+| CV\_TINCoverage | MultiSurfaceCoverage (CIS 1.0 or 1.1) with at least one interpolation method
+
+|===
+
+=== GML 3.2.1
+
+In GML 3.2.1 [2], all coverage types are derived from the abstract Coverage data type containing a DomainSet and a RangeSet component. The OGC coverage implementation schema, CIS, extends this with two additional components, a mandatory RangeType and optional metadata, an extensible slot for individual, application-specific metadata structures.The GMLCOV/CIS 1.0 changes which apply over GML 3.2.1 are detailed in [5].The following CIS 1.1 changes apply over GML 3.2.1 [2]:
+* There are several extra concepts not present in GML 3.2.1, ranging from model (grid definition by axis rather than by grid type, SensorML domains, etc.) over representation (partitioning and geometry/value pairs) to encoding (addition of JSON and RDF).
+* Coordinates are not required to be numeric only, but can also contain strings such as ISO 8601 date/timestamps or categorical values. This is instrumental for general multi-dimensional coverages.
+* A point cloud coverage type, MultiPointCoverage, is provided which semantically is equivalent to GML 3.2.1 and GMLCOV/CIS 1.0, but allows string coordinates as described above.
+
+GMLCOV/CIS 1.0 coverage types MultiCurveCoverage, MultiSurface­Cover­age, and MultiSolidCoverage are not addressed by CIS 1.1, the original GMLCOV/CIS 1.0 definitions remain valid.
+
+=== GML 3.3
+
+GML 3.3 [3] adds several grid types to GML 3.2.1. However, given the OGC modular specification rules these are not automatically available for GMLCOV/CIS 1.0. Further, these grid types resemble only special cases omitting, for example, combinations of regular and irregular axes in the same datacube. The CIS 1.1 model encompasses and generalizes GML 3.3. In the CIS 1.1 XML encoding, the GML 3.3 schema is included.
+
+=== SWE Common
+
+The RangeType element of a coverage describes the coverage’s range set data structure (see Clause 6). This range value structure description is adopting the SWE Common [4] Data­Record.
+
+=== Further Standards
+
+The OGC standards WaterML 2 [OGC 10-126r4], TimeseriesML 1 [OGC 15-043rX], and OM-JSON [OGC 15-100r1] represent domain-specific standards for which the OGC Coverage Implementation Schema establishes a domain-neutral basic data structure which can be used whenever a coverage-like structure occurs; such standards, while retaining interoperability by using the common coverage model, will likely extend coverages with domain specific metadata, such as done in TimerseriesML.&nbsp;+

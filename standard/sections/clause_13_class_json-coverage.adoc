@@ -1,0 +1,80 @@
+[[class_json-coverage]]
+== Class _json-coverage_
+
+Class _json-coverage_ establishes how coverages, as defined in this standard, are represented in the JSON encoding format.
+
+[%unnumbered]
+[[req_34]]
+|===
+| Requirement 34
+
+| A coverage using the _json-coverage_ scheme *shall* implement class _coverage_.
+
+|===
+
+[%unnumbered]
+[[req_35]]
+|===
+| Requirement 35
+
+| A coverage encoded in JSON test *shall* conform to IETF RFC7159.
+
+|===
+
+[%unnumbered]
+[[req_36]]
+|===
+| Requirement 36
+
+| In a coverage encoded in JSON, the coverage document represented*shall* conform to the JSON Schema definitions being part of this standard.
+
+|===
+Example    The following JSON snippet is an example of a JSON encoded coverage.
+
+[%unnumbered]
+[source, JSON]
+----
+{   
+	"type": "CoverageByDomainAndRangeType",
+	"DomainSet":{
+	        "type": "DomainSetType",
+	        "generalGrid":{
+           "type": "GeneralGridCoverageType",
+	           "srsName":              "http://www.opengis.net/def/crs/OGC/0/Index2D",
+	           "axisLabels": ["i",
+	 "j"],
+	           "axis": [{
+               "type": "IndexAxisType",
+	              "axisLabel": "i",
+	              "lowerBound": 0,
+	              "upperBound": 2
+           }, {
+              "type": "IndexAxisType",
+	              "axisLabel": "j",
+	              "lowerBound": 0,
+	              "upperBound": 2
+           }]
+        }
+    },
+	    "RangeSet": {
+        "type": "RangeSetType",
+	        "dataBlock": {
+           "type": "VDataBlockType",
+	            "values": [1,2,3,4,5,6,7,8,9]
+        }
+    },
+    "RangeType": {
+         "type": "DataRecordType",
+	       "field":[{
+	            "type": "QuantityType",
+	           "definition": "ogcType:unsignedInt",
+	           "uom": {
+	              "type": "UnitReference",
+	              "code": "10^0"
+           }
+        }]
+    }
+  }
+----
+
+The JSON Schema being part of this specification has been used to validate the examples for different coverages encoded in JSON also provided.

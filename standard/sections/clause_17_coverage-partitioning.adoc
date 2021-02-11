@@ -1,0 +1,222 @@
+[[class_coverage-partitioning]]
+== Class _coverage-partitioning_
+
+=== Overview
+This class _coverage-partitioning_ establishes an alternative representation for coverages through partitioning into sub-coverages or direct enumeration of position/value pairs.
+
+=== Partitioning
+With the coverage extensions provided by this class coverages can be composed from other coverages which are either copied in directly (“domain-and-range” variant), or referenced by coverage id (“partitioning” variant), or can contain single values per direct position (“position/value pair” variant, sometimes also called “geometry/value pair” or “interleaved”).
+
+Coverages embedded (“sub-coverages”) can be of the same or lower dimension than the coverage embedding them (“super-coverage”). The part­ition element in the super-coverage, acting as a connection between sub- and super-cov­er­age, contains an envelope element de­termining the sub-coverage’s position relative to the super-coverage. A coverage can be part of several partitioned coverages simultaneously, thereby allowing shared regions. A partitioned coverage can itself be part of another partitioned coverage, there­by allowing trees of coverages to be built recursively.
+
+In the position/value pair approach, single range values (which may be composite, such as RGB pixel values) are listed together with their direct position.
+
+All of the above variants can be combined freely within a single coverage as per this standard. However, an implementation may constrain the partitioning choices available, such as to “partitioning only along time axis” or “only equi-sized sub-coverages”. Further, it may support selection of partitioned and “geometry/value pair” representation.
+
+[%unnumbered]
+[[req_47]]
+|===
+| Requirement 47
+
+| A coverage using the _coverage-partitioning_ scheme *shall* conform to class _coverage_.
+
+|===
+
+[%unnumbered]
+[[req_48]]
+|===
+| Requirement 48
+
+| A coverage using the _coverage-partitioning_ scheme *shall* conform to Figure 12, Table 19, Table 20, Table 21, Table 22, and Table 23.
+
+|===
+The partitioning mechanism effectively establishes a nesting of coverages. This nesting must be acyclic, i.e., a coverage cannot contain itself.
+
+[%unnumbered]
+[[req_49]]
+|===
+| Requirement 49
+
+| A coverage *shall* not reference itself through a partition element, neither directly nor in­dir­ect­ly.
+
+|===
+All “sub-coverages” participating in a partitioned coverage must lie inside the super-cover­age and additionally must fulfill homogeneity criteria to ensure that the resulting structure ad­heres to the definition of a coverage, as specified in the following Subclauses.
+
+A coverage can act as sub-coverage in more than one coverages.
+
+
+[#img_uml_of_cis_coveragebypartitioning,reftext='{figure-caption} {counter:figure-num}']
+.UML diagram of CIS::CoverageByPartitioning structure as per _coverage-partitioning_
+image::images/figure12.png[align="center"]
+
+
+.CIS::CoverageByPartitioning structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| partition­Set | Set of coverages or single position­ed values which together make up the coverage on hand a| CIS:: +
+ Partit­ionSet
+a| one +
+ (mandatory)
+
+|===
+
+.CIS::PartitionSet structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| partition­ | Sub-coverage being part of the coverage on hand, together with positioning information a| CIS:: +
+ Partit­ion
+a| Zero or one +
+ (optional)
+| value | Range value being part of the coverage on hand, together with positioning information | CIS::PositionValuePair a| Zero or one +
+ (optional)
+
+|===
+
+.CIS::Partition structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| envelope a| Envelope of sub-coverage making up this partition; +
+ default: envelope of the coverage referenced
+| CIS::EnvelopeByAxis a| Zero or one +
+ (optional)
+| coverage a| Coverage acting as partition +
+ (directly stored here or through some resolvable reference, such as coverage id or a URL)
+| CIS::AbstractCoverage a| One +
+ (mandatory)
+
+|===
+
+.CIS::PositionValuePair structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| direct­Position | Direct position of the coverage to which value is assigned | string a| One +
+ (mandatory)
+| value | Coverage value to be associated with direct­Position | any a| One +
+ (mandatory)
+
+|===
+
+.CIS::RangeTypeComponentTranslation structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+a| super-­ +
+ Coverage­Compon­ent­Name
+| Name of range type component as defined in the super-coverage range type | string a| One +
+ (mandatory)
+| sub­Coverage­Component­Name | Name of corresponding range type component as defined in the sub-coverage range type | string a| One +
+ (mandatory)
+
+|===
+
+Sub-coverages can be stored directly as the value of coverage, or they can be given as some reference, such as coverage id or a URL.
+
+NOTE: Support for these alternatives may vary across data format encodings. Further, as this is a normative requirement which a server must fulfill an implementation possibly will restrict the options for referencing coverages to those ones where it can control this acyclicity requirement.
+
+=== CRS and partition envelope constraints
+The sub-coverage CRS must allow that the coverage data can be embedded in the super-coverage referencing it.
+
+[%unnumbered]
+[[req_50]]
+|===
+| Requirement 50
+
+| For any coverage _s_ with domain set CRS _cs_ being a partition of some coverage _c_ with domain set CRS _cc_, the following *shall* hold: _cs_ is obtained from _cc_ by deleting zero or more axes from _cc_.
+
+|===
+
+NOTE: This definition enforces an identical axis order among those axes present in both the sub- and super-coverage CRSs.
+
+Example    A timeseries datacube with CRS axes _Lat/Long/t_ can contain sub-coverages whose CRS axes are given by _Lat/Long_, but not by _Long/Lat_. A datacube with axis order _t/Lat/Long_ likewise can contain sub-coverages with a _Lat/Long_ CRS.
+
+Lower-dimensional sub-coverages are embedded as slices of thickness one into the super-coverage.
+
+[%unnumbered]
+[[req_51]]
+|===
+| Requirement 51
+
+| For any axis not occurring in the domain set CRS _cp_ of coverage _p_ but listed as a partition of some coverage _c_ with domain set CRS _cc_, lowerBound = upperBound *shall* hold in the envelope of the _p_ partition referencing _s_.
+
+|===
+
+NOTE: This allows to “lift”coverage parts into higher-dimensional spaces in the super-coverage, such as embedding a 2-D Lat/Long timeslice into a 3-D Lat/Long/time datacube.
+
+The CIS::partitionEnvelope element does not need to repeat coordinate axis values of the sub-coverage if they are identical in the context of the super-coverage.
+
+[%unnumbered]
+[[req_52]]
+|===
+| Requirement 52
+
+| For any axis of the domain set CRS _cc_ of some coverage _c_ containing some coverage _p_ as a partition, any axis not listed in _c_’s partitionEnvelope within _p_ the default lowerBound and upperBound of this axis in the partitionEnvelope *shall* be given by the corresponding values in the DomainSet of _p_.
+
+|===
+
+NOTE: Axis identification and sequence is unambiguous even when axes are left out because part­itionEnvelope coordinates are expressed in terms of the super-coverages CRS which defines all axes and their sequence.
+
+=== Domain set constraints
+The sub-coverage domain sets, as well as single direct positions, must be non-overlapping (considering all axes plus the range components) and properly contained in the super-cover­age; missing boundary values are represented as a null value.
+
+NOTE: Such null values can be used whenever the actual extent of the super-coverage is not known in the super-coverage itself, such as in timeseries where further timeslices can be appended at any time. The representation of such a null value is defined in the concrete encodings.
+
+[%unnumbered]
+[[req_53]]
+|===
+| Requirement 53
+
+| For any coverage _p_ referenced as partition in a coverage _c_, the envelope of _p_*shall* be a subset of the domain set of _c_, obtained by ignoring all values of lowerBound and UpperBound in the envelope of _c_ which have a null value.
+
+|===
+
+[%unnumbered]
+[[req_54]]
+|===
+| Requirement 54
+
+| For any coverage _c_ of type CIS:CoverageByPartitioning, all partition and value components *shall* have pairwise disjoint extents across any of its range components.
+
+|===
+Example    Band-interleaved (BIL) representation can be achieved through multiple sub-coverages all registered to the same extent, but each one adding an individual band.
+
+[%unnumbered]
+[[req_55]]
+|===
+| Requirement 55
+
+| In a coverage containing at least one direct position for which no value is stored there*shall* be at least one null (i.e., nil) value defined in its range type.
+
+|===
+NOTE: Such “undefined areas” can only occur with coverages containing partitions (in a domain / range representation there must always exist a value for each direct position). This rule makes sure that “null values” exist when needed.
+
+NOTE:  Such “default” null values can differ among direct positions, an implementation is free to choose values non-deterministically. It is good practice, though, to use a single value whenever possible.
+
+=== Range type constraints
+
+Sub- and super-coverage must have compatible range types – either identical ones, or partitions contribute parts of the full super-coverage range component record.
+
+[%unnumbered]
+[[req_56]]
+|===
+| Requirement 56
+
+| For any coverage _p_ with range type _rp_ referenced as a partition in a coverage _c_ with range type _rc_, the following *shall* hold: _rp_ is obtained from _rc_ by deleting zero or more range components from _rc_.
+
+|===
+NOTE: Sub-coverage bands are visible in the super-coverage under the name indicated in the range type translation list, which obviously must not lead to name clashes in the super-coverage (i.e., range component names still have to be pairwise distinct). Further, from the super-coverage perspective, all range components “imported” must adhere to the same range type definition to not violate the basic definition of range type coherence in a coverage.
+
+Example    Band-interleaved storage of satellite imagery, as well as variables in climate model output can be accomplished this way: single bands, or combinations of bands, can go into separate sub-coverages which are linked together through a super-coverage.
+
+If the partitions altogether are not commensurate to the complete range type structure then the range components not covered are equivalent to some null value (which must be defined in this case).
+
+[%unnumbered]
+[[req_57]]
+|===
+| Requirement 57
+
+| In any coverage containing at least one range component for which no value is stored there*shall* be at least one null (i.e., nil) value defined in the corresponding range type component.
+
+|===
+
+Example 1  Consider an RGB coverage where the color bands are factored out into partitions. Assume that there are only partitions for the red and green, but not for the blue band. In this case, the range type definition of the RGB coverage must provide a null value for the blue band so that an equivalent “flat” coverage can be constructed which contains null values in all direct positions for the missing blue band.
+
+Example 2  Band interleaving combined with spatial partitioning (such as in mosaics) may lead to small islands of null values. For each of them, a proper null value definition must exist allowing an implementation to interpret the missing value as one of these null values.

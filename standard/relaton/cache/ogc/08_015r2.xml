@@ -1,0 +1,35 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-intro" format="text/plain" language="en" script="Latn">Topic 2</title>
+  <title type="title-main" format="text/plain" language="en" script="Latn">Spatial referencing by coordinates</title>
+  <title type="main" format="text/plain" language="en" script="Latn">Topic 2 - Spatial referencing by coordinates</title>
+  <uri type="obp">https://portal.opengeospatial.org/files/?artifact_id=39049</uri>
+  <docidentifier type="OGC">08-015r2</docidentifier>
+  <date type="published">
+    <on>2010</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Roger Lott</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>2</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This document is consistent with the second edition (2007) of ISO 19111, Geographic Information - Spatial referencing by coordinates  [ISO 19111:2007]</abstract>
+  <ext>
+    <doctype>abstract-specification-topic</doctype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

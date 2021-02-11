@@ -1,0 +1,182 @@
+[[class_grid-regular]]
+
+== Class _grid-regular_
+
+=== Overview
+
+This class _grid-regular_ establishes coverages with regular grid types, both referenced and non-referenced. For backwards compatibility, CIS10::GridCoverage and CIS10::RectifiedGridCoverage are kept from GMLCOV/CIS 1.0 [5]; additionally, a new structure CIS::GeneralGridCoverage is added.
+
+=== General grid coverages
+
+CIS::GeneralGridCoverage lays foundation for the modelling of all possible grid types in CIS. While in class _grid-regular_ only regular grids are defined, classes _grid-irregular_ and _grid-transformation_ extend this framework successively with additional grid types.
+
+NOTE: Skewed and rotated grids are not modelled explicitly; they can be represented by making the grid’s CRS a concatenation of any given CRS with an Engineering CRS describing, e.g., any affine transformation of the original grid.
+
+[%unnumbered]
+[[req_14]]
+|===
+| Requirement 14
+
+| A coverage instantiating class _grid-regular_*shall* conform with class _coverage_.
+
+|===
+
+[%unnumbered]
+[[req_15]]
+|===
+| Requirement 15
+
+| A coverage of type CIS::GeneralGridCoverage *shall*have a structure as given by Figure 5, Table 8, Table 9, Table 10, and Table 13.
+
+|===
+
+
+[#img_generalgridcoverage,reftext='{figure-caption} {counter:figure-num}']
+.CIS::GeneralGridCoverage structure as per _grid-regular_
+image::images/figure5.png[align="center"]
+
+.CIS::GeneralGridCoverage structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| DomainSet | grid defining the coverage’s direct positions, specializing the general DomainSet of CIS::AbstractCoverage | CIS::General­Grid a| One +
+ (mandatory)
+4+| (all other components inherited unchanged from CIS::AbstractCoverage)
+
+|===
+
+==== General Grid
+
+===== Overview
+Gridded coverages have a grid as their domain set describing the direct positions in multi-dimensional coordinate space, depending on the type of grid. In this class _grid-regular_, simple equidistant grids are established.
+
+[%unnumbered]
+[[req_16]]
+|===
+| Requirement 16
+
+| A CIS::GeneralGrid *shall*have a structure as given by Figure 5, Table 9, Table 10, Table 11, Table 12, and Table 13.
+
+|===
+
+.CIS::GeneralGrid structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| srsName | URL identifying the CRS of the coordinates in this coverage | anyURI a| One +
+ (mandatory)
+| axis | grid axis identifiers, all distinct within a grid | CIS::Axis a| One or more +
+ (mandatory)
+
+|===
+
+NOTE: Such a General Grid does not contain global offset vectors because these are available with the axis subtypes where appropriate. It does not contain a rotation vector as this can be modelled by concatenating the CRS with an appropriate Engineering CRS for general affine transformations.
+
+A CIS::Axis item contains information about a particular axis: its axis name, unit of measure along the axis, and further information depending on the axis type.
+
+.CIS::Axis structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| axisLabel | identifier of this axis | string a| One +
+ (mandatory)
+
+|===
+
+Except for an index axis (which is a bare array grid), coordinates in an axis are expressed in some geodetic CRS or similar. Correspondingly, the grid limits in the CIS::Axis structure contains information about the grid boundaries in the coverage’s CRS.
+
+In addition, the limits of the underlying array are given by the CIS::gridLimits component. This structure is optional because it is not needed when all coverage axes are of type CIS::indexAxis, in which case the boundary information is redundant.
+
+.CIS::GridLimits structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| srsName | URL identifying the Index CRS of the domain set grid array in this coverage | anyURI a| One +
+ (mandatory)
+| indexAxis | all axes of the Index CRS referenced in srsName, in proper sequence a| CIS:: +
+ IndexAxis
+a| One or more +
+ (mandatory)
+
+|===
+
+Example    The Index CRS for a 2-D grid is http://www.opengis.net/def/crs/OGC/0/In%1Fdex%1F2D[http://www.opengis.net/def/crs/OGC/0/In­dex­2D]. It defines axis names _i_ and _j_.
+
+In this _regular-grid_ class, two subtypes of axes are defined, characterized by their axis type and CRS used: index and regular axis.
+
+===== Index Axis
+
+Axis type CIS::IndexAxis requires an Index CRS as its CRS, as defined in the OGC Name Type Specification for Index CRSs [9]. An Index CRS allows only integer coordinates with spacing (“resolution”) of 1, hence resembling Cartesian coordinates; therefore, there is no resolution value.
+
+.CIS::IndexAxis structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| lowerBound | Lowest array coordinate along this axis | integer a| One +
+ (mandatory)
+| upperBound | Highest array coordinate along this axis | integer a| One +
+ (mandatory)
+
+|===
+
+NOTE: A grid coverage containing exclusively axes of type IndexAxis technically corresponds to a CIS10::Grid­Coverage, however, with a slightly differing schema.
+
+===== Regular Axis
+
+Axis type CIS::RegularAxis has no restriction on the CRS used; as it is regularly spaced it contains the common distance, i.e.: resolution, as a part of the axis definition.
+
+.CIS::RegularAxis structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| lowerBound | Lowest coordinate along this grid axis | string a| One +
+ (mandatory)
+| upperBound | Highest coordinate along this axis | string a| One +
+ (mandatory)
+| resolution | grid resolution along this axis | string a| One +
+ (mandatory)
+| uomLabel | unit of measure in which values along this axis are expressed | string a| One +
+ (mandatory)
+
+|===
+
+NOTE: The type is string to accommodate any potential resolution specification, such as “100” for degrees or meters, “2015-07-30T23Z” for a 1-hour duration in Gregorian calendar, and potential future calendar types.
+
+[%unnumbered]
+[[req_17]]
+|===
+| Requirement 17
+
+| In a coverage using the _grid-regular_ scheme, the resolution value in a CIS::RegularAxis *shall* be a nonzero, positive value expressed in the units of measure of this axis as defined in the CRS identified in the srsName item of the envelope.
+
+|===
+
+The set of direct positions in a grid is given by the number of grid points. In the simplest case of a grid with index axes only, this is the product of the axis extents. For more complex grid types this computation gets more involved.
+
+For some CIS::GeneralGrid _g_, let _n~x~_ be the number of CIS::IndexAxis elements, _n~r~_ the number of CIS::RegularAxis elements, _n~i~_ the number of CIS::Irregular axis elements, _n~d~_ the number of CIS::DisplacementAxisNest elements associated with any of the CIS::DisplacementAxis items, and _n~t~_ be the number of CIS::Trans­format­ion­Model elements associated with any of the CIS::TransformationAxis items.
+
+Let the following positive integer numbers be defined for the number of direct position coordinates along axes or axis combinations:
+
+* IndexAxis: +
+_px~a~_ := _g_._a_.upperBound – _g_._a_.lowerBound + 1 for _a_∈ _g_.CIS::IndexAxis;
+* RegularAxis: +
+_pr~a~_ := ⌊(_g_._a_.upperBound–_g __.__ a_.lowerBound)/resolution⌋ (i.e., rounded down) for _a_∈ _g_.CIS::RegularAxis;
+* IrregularAxis: +
+_pi~a~_ := card(_g.a_.directPositions) for _a_∈ _g_.CIS::IrregularAxis;
+* DisplacementAxis: +
+_pd~d~_ := card(_g_._d_.directPositions) for _d_∈ _g_.displacement;
+* TransformationAxis: +
+_pt~m~_ := card( _f_(_g_) ) for _m_∈ _g_.model where _f_ is a function on _g_ delivering all direct positions (such as a sensor model);
+
+Then, the number _n~p~_ of direct positions in _g_ is given by the product of all the above items:
+
+//_n~p~_ := Π~a~ _px~a~_ * Π~a~ _pr~a~_ * Π~a~ _pi~a~_ * Π~d~ _pd~d~_ * Π~m~ _pt~m~
+//latexmath:[n_p := \prod_{\substack{a}} px_a * \prod_a pr_a * \prod_a pi_a * \prod_d pd_d * \prod_m pt_m]
+asciimath:[n_p := prod_a px_a * prod_a pr_a * prod_a pi_a * prod_d pd_d * prod_m pt_m]
+
+
+
+where a partial product is 1 if no such item exists.
+
+[%unnumbered]
+[[req_18]]
+|===
+| Requirement 18
+
+| The RangeSet of a coverage containing the above CIS::GeneralGrid _g_ *shall* contain exactly _n~p~_ value items.
+
+|===

@@ -1,0 +1,39 @@
+[[class_discrete-pointcloud]]
+== Class _discrete-pointcloud_
+
+Class _discrete-pointcloud_ defines coverages which represent sets of multi-dimensional points at arbitrary positions.The domain set of a discrete coverage consists of spatial and/or temporal objects, finite in number. The range set is comprised of a finite number of attribute values each of which is associated to every direct position within any single spatiotemporal object in the domain. In other words, the range values are constant on each spatiotemporal object in the domain. This coverage function maps each element from the coverage domain to an element in its range.
+
+[%unnumbered]
+[[req_26]]
+|===
+| Requirement 26
+
+| A coverage instantiating class _discrete-pointcloud_*shall* conform with class _coverage_.
+
+|===
+
+[%unnumbered]
+[[req_27]]
+|===
+| Requirement 27
+
+| A coverage using the _discrete-pointcloud_ scheme *shall* con­form with Figure 11 and Table 18.
+
+|===
+
+While this definition is based on GML it does not preclude a GML encoding (through class _gml-coverage_); the same structures may be represented in any other suitable format (using class _other-format-coverage_).
+
+[#img_uml_of_cis_multipointcoverage,reftext='{figure-caption} {counter:figure-num}']
+.UML diagram of CIS::MultiPointCoverage structure
+image::images/figure11.png[align="center"]
+
+
+In a MultiPointCoverage the domain set is a GM\_MultiPoint, that is a collection of arbitrarily distributed geometric points.
+
+.Table :      CIS::MultiPointCoverage structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| DomainSet | Direct positions of coverage, describing points | CIS::Direct­MultiPoint a| One +
+ (mandatory)
+
+|===

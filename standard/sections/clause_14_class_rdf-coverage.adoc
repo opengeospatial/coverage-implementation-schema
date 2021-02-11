@@ -1,0 +1,204 @@
+[[class_rdf-coverage]]
+== Class _rdf-coverage_
+
+Class _rdf-coverage_ establishes how to represent coverages as Link­ed Data in RDF. This is done by providing a mapping between the JSON encoding and the RDF triples model using JSON-LD which allows that a JSON file with some additional content, defined in the W3C JSON-LD syntax [20], can be converted into RDF notation automatically using the W3C JSON-LD API [21].          One implementation of this API is provided in the JSON-LD Playground ( http://json-ld.org/playground/[http://json-ld.org/playground/]).
+
+[%unnumbered]
+[[req_37]]
+|===
+| Requirement 37
+
+| A coverage encoded in RDF *shall* conform to W3C RDF 1.1 Concepts and Abstract Syntax [22] and shall be constructed as if derived from a JSON encoded coverage which additionally conforms to W3C JSON-LD version 1 [20].
+
+|===
+
+This conformance class has a dependency on the json-coverage only if the RDF encoding is derived from JSON-LD. The dependency on this class is not normative as coverage instances of this class can be RDF encoded without any previous use of JSON or JSON-LD to derive the class. +
+ Although this conformance class refers to class _json-coverage_ it is not normatively dependent on this class as coverage instances of this class do not implement the JSON encoding, but RDF. Subsequent requirements detail the structure of a hypothetical JSON-LD coverage leading to the RDF coverage defined.
+
+[%unnumbered]
+[[req_38]]
+|===
+| Requirement 38
+
+| A coverage encoded in JSON-LD *shall* include a reference to a JSON-LD @context docu­ment for the coverage’s root object and other JSON-LD @context documents for the ob­jects DomainSet, RangeSet, RangeType, envelope and partitionSet when these objects are present.
+
+|===
+
+Coverage components which are not in the above list of objects require personalized JSON-LD @context objects embedded or linked to allow mapping to the RDF models. One example for this is the metadata object.          The JSON-LD @context documents being part of this specification have been used to validate that examples of the different coverages encoded in JSON-LD also provided can be successfully converted to RDF.Example    The sample JSON code being part of this specification contains the necessary @context objects that can be linked or embedded in other JSON instances wanting to be conformant to this standard.
+
+[%unnumbered]
+[[req_39]]
+|===
+| Requirement 39
+
+| A coverage encoded in JSON-LD *shall* embed or include a reference to a @context object defining the abbreviated and full namespace of the object identifiers in the way defined by the W3C JSON-LD standard.
+
+|===
+
+This @context object is not included as a separated JSON-LD @context document because id namespaces are commonly responsibility of the data provider and should be provided by them. The provides can decide to provide a JSON-LD  @context document to include by reference to several coverages or can embed this definition directly in the coverage.
+
+[%unnumbered]
+[[req_40]]
+|===
+| Requirement 40
+
+| In a coverage encoded in JSON-LD, each object *shall* contain an id and type property where id values *shall* be composed by the abbreviated namespace for ids, a “:” (colon) character and the id value, and the type property *shall* be the name of the object’s data type without namespace.
+
+|===
+
+Large lists of values or coordinates embedded in the document are likely to produce excessively large RDF encodings. Therefore, instead of including them in the JSON file directly it can be advantageous to store such parts in separate files and reference these instead.Example 1  Some of the sample JSON files being part of this specification have the values embedded (in places where potentially large lists will be used in practice) instead of being factored out into separated files. This is for didactic purpose only, these values are not be mapped to RDF when using the JSON-LD @context documents provided.Example 2  The following JSON snippet illustrates an example of a JSON-LD encoded coverage with links to the @context document provided by this standard.
+
+[%unnumbered]
+[source, rdf]
+----
+{    "@context": ["http://schemas.opengis.net/cis/1.1/json/coverage-context.json",
+         {"examples": "http://www.opengis.net/cis/1.1/examples/"}],
+    "type": "CoverageByDomainAndRangeType",
+    "id": "examples:CIS_05_2D",
+    "DomainSet":{       
+	"@context":
+		"http://schemas.opengis.net/cis/1.1/json/domainset-context.json",
+        "type": "DomainSetType",
+        "id": "examples:CIS_DS_05_2D",
+        "generalGrid":{           "type": "GeneralGridCoverageType",
+           "id": "examples:CIS_DS_GG_05_2D",
+           "srsName": "http://www.opengis.net/def/crs/OGC/0/Index2D",
+           "axisLabels": ["i",
+ "j"],
+           "axis": [{              "type": "IndexAxisType",
+              "id": "examples:CIS_DS_GG_I_05_2D",
+              "axisLabel": "i",
+              "lowerBound": 0,
+              "upperBound": 2
+           }, {
+              "type": "IndexAxisType",
+              "id": "examples:CIS_DS_GG_J_05_2D",
+              "axisLabel": "j",
+              "lowerBound": 0,
+              "upperBound": 2
+           }]
+        }
+    },
+    "RangeSet": {       
+	 "@context":
+		"http://schemas.opengis.net/cis/1.1/json/rangeset-context.json",
+        "type": "RangeSetType",
+        "id": "examples:CIS_RS_05_2D",
+        "fileReference": "http://myserver.com/fileref.tiff"    },
+    "RangeType": {       
+	 "@context":
+		"http://schemas.opengis.net/cis/1.1/json/rangetype-context.json",
+        "type": "DataRecordType",
+        "id": "examples:CIS_RT_05_2D",
+        "field":[{           "type": "QuantityType",
+           "id": "examples:CIS_RT_F_05_2D",
+           "definition": "ogcType:unsignedInt",
+           "uom": {              "type": "UnitReference",
+              "id": "examples:CIS_RT_F_UOM_05_2D",
+              "code": "10^0"
+           }
+        }]
+    }
+ }
+----
+
+Example 3  The following RDF triples representation corresponds to the JSON-LD encoded coverage  listed above:
+
+[%unnumbered]
+[source, xml]
+----
+<http://www.opengis.net/cis/1.1/examples/CIS_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/cis/1.1/CoverageByDomainAndRangeType> .
+ 
+<http://www.opengis.net/cis/1.1/examples/CIS_05_2D>
+	<http://www.opengis.net/cis/1.1/DomainSet>
+	<http://www.opengis.net/cis/1.1/examples/CIS_DS_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_05_2D>
+	<http://www.opengis.net/cis/1.1/generalGrid>
+	<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/cis/1.1/DomainSetType> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_05_2D>
+	<http://www.opengis.net/cis/1.1/axis>
+	<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_I_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_05_2D>
+	<http://www.opengis.net/cis/1.1/axis>
+	<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_J_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_05_2D>
+	<http://www.opengis.net/cis/1.1/axisLabels>
+	<http://www.opengis.net/cis/1.1/axisLabels0> .
+<http://www.opengis.net/cis/1.1/axisLabels0>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "i" .
+<http://www.opengis.net/cis/1.1/axisLabels0>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>
+	<http://www.opengis.net/cis/1.1/axisLabels1> .
+<http://www.opengis.net/cis/1.1/axisLabels1>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#first> "j" .
+<http://www.opengis.net/cis/1.1/axisLabels1>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#nil> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_05_2D>
+	<http://www.opengis.net/cis/1.1/srsName>
+	<http://www.opengis.net/def/crs/OGC/0/Index2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/cis/1.1/GeneralGridCoverageType> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_I_05_2D>
+	<http://www.opengis.net/cis/1.1/axisLabel> "i" .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_I_05_2D>
+	<http://www.opengis.net/cis/1.1/lowerBound>
+	"0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_I_05_2D>
+	<http://www.opengis.net/cis/1.1/upperBound>
+	"2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_I_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/cis/1.1/IndexAxisType> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_J_05_2D>
+	<http://www.opengis.net/cis/1.1/axisLabel> "j" .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_J_05_2D>
+	<http://www.opengis.net/cis/1.1/lowerBound>
+	"0"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_J_05_2D>
+	<http://www.opengis.net/cis/1.1/upperBound>
+	"2"^^<http://www.w3.org/2001/XMLSchema#integer> .
+<http://www.opengis.net/cis/1.1/examples/CIS_DS_GG_J_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/cis/1.1/IndexAxisType> .
+ 
+<http://www.opengis.net/cis/1.1/examples/CIS_05_2D>
+	<http://www.opengis.net/cis/1.1/RangeSet>
+	<http://www.opengis.net/cis/1.1/examples/CIS_RS_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RS_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/cis/1.1/RangeSetRefType> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RS_DB_05_2D>
+	<http://www.opengis.net/cis/1.1/fileReference>
+	<http://myserver.com/fileref.tiff> .
+ 
+<http://www.opengis.net/cis/1.1/examples/CIS_05_2D>
+	<http://www.opengis.net/cis/1.1/RangeType>
+	<http://www.opengis.net/cis/1.1/examples/CIS_RT_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_05_2D>
+	<http://www.opengis.net/swe/2.0/field>
+	<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/swe/2.0/DataRecordType> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_05_2D>
+	<http://www.opengis.net/swe/2.0/definition>
+	<http://www.opengis.net/def/dataType/OGC/0/unsignedInt> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_05_2D>
+	<http://www.opengis.net/swe/2.0/uom>
+	<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_UOM_05_2D> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/swe/2.0/QuantityType> .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_UOM_05_2D>
+	<http://www.opengis.net/swe/2.0/code> "10^0" .
+<http://www.opengis.net/cis/1.1/examples/CIS_RT_F_UOM_05_2D>
+	<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+	<http://www.opengis.net/swe/2.0/UnitReference> .
+----

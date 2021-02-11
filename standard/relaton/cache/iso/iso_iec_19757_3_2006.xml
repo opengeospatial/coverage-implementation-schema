@@ -1,0 +1,69 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-intro" format="text/plain" language="en" script="Latn">Information technology</title>
+  <title type="title-main" format="text/plain" language="en" script="Latn">Document Schema Definition Languages (DSDL)</title>
+  <title type="title-part" format="text/plain" language="en" script="Latn">Part 3: Rule-based validation -- Schematron</title>
+  <title type="main" format="text/plain" language="en" script="Latn">Information technology - Document Schema Definition Languages (DSDL) - Part 3: Rule-based validation -- Schematron</title>
+  <uri type="src">https://www.iso.org/standard/40833.html</uri>
+  <uri type="rss">https://www.iso.org/contents/data/standard/04/08/40833.detail.rss</uri>
+  <docidentifier type="ISO">ISO/IEC 19757-3:2006</docidentifier>
+  <docidentifier type="URN">urn:iso:std:iso-iec:19757:-3:stage-95.99:ed-1:en</docidentifier>
+  <docnumber>19757</docnumber>
+  <date type="published">
+    <on>2006-06</on>
+  </date>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>International Organization for Standardization</name>
+      <abbreviation>ISO</abbreviation>
+      <uri>www.iso.org</uri>
+    </organization>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>International Electrotechnical Commission</name>
+      <abbreviation>IEC</abbreviation>
+      <uri>www.iec.ch</uri>
+    </organization>
+  </contributor>
+  <edition>1</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">ISO/IEC 19757 defines a set of Document Schema Definition Languages (DSDL) that can be used to specify one or more validation processes performed against Extensible Markup Language (XML) or Standard Generalized Markup Language (SGML) documents. (XML is an application profile SGML, ISO 8879:1986.)ISO/IEC 19757-3:2006 specifies Schematron, a rules-based schema language for XML. It establishes requirements for Schematron schemas and specifies when an XML document matches the patterns specified by a Schematron schema.</abstract>
+  <status>
+    <stage>95</stage>
+    <substage>99</substage>
+  </status>
+  <copyright>
+    <from>2006</from>
+    <owner>
+      <organization>
+        <name>ISO/IEC</name>
+      </organization>
+    </owner>
+  </copyright>
+  <relation type="updates">
+    <bibitem type="standard">
+      <formattedref format="text/plain">ISO/IEC 19757-3:2016</formattedref>
+      <date type="circulated">
+        <on>2016-01-14</on>
+      </date>
+    </bibitem>
+  </relation>
+  <place>Geneva</place>
+  <ext>
+    <doctype>international-standard</doctype>
+    <editorialgroup>
+      <technical-committee number="1" type="TC">ISO/IEC JTC 1/SC 34Document description and processing languages</technical-committee>
+    </editorialgroup>
+    <ics>
+      <code>35.240.30</code>
+      <text>IT applications in information, documentation and publishing</text>
+    </ics>
+    <structuredidentifier type="ISO">
+      <project-number>ISO/IEC 19757</project-number>
+    </structuredidentifier>
+  </ext>
+</bibdata>

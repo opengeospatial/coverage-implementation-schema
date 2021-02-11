@@ -1,0 +1,43 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">Timeseries Profile of Observations and Measurements </title>
+  <title type="main" format="text/plain" language="en" script="Latn">Timeseries Profile of Observations and Measurements </title>
+  <uri type="obp">http://docs.opengeospatial.org/is/15-043r3/15-043r3.html</uri>
+  <docidentifier type="OGC">15-043r3</docidentifier>
+  <date type="published">
+    <on>2016</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>James Tomkins </completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Dominic Lowe </completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>3</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">The OGC Timeseries Profile of Observations and Measurements is a conceptual model for the representation of observations data as timeseries, with the intent of enabling the exchange of such data sets across information systems. This standard does not define an encoding for the conceptual model; however there is an accompanying OGC Standard which defines an XML encoding (OGC TimeseriesML 1.0 - XML Encoding of the Timeseries Profile of Observations and Measurements). Other encodings may be developed in future.</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

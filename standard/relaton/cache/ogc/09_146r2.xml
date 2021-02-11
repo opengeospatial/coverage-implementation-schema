@@ -1,0 +1,41 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC® Coverage Implementation Schema</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC® Coverage Implementation Schema</title>
+  <uri type="obp">https://portal.ogc.org/files/?artifact_id=48553</uri>
+  <docidentifier type="OGC">09-146r2</docidentifier>
+  <date type="published">
+    <on>2012-05-11</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Peter Baumann</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>2</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This document specifies a GML coverage structure extending the definition of GML 3.2.1 [07-036] in a compatible way.&#13;
+&#13;
+Main change over GML is the addition of one mandatory component, rangeType, to the Coverage definition of GML 3.2.1 to provide a concise description of the coverage range&#13;
+value definition. Further, handling of format encodings different from GML are established.&#13;
+&#13;
+This enhanced coverage type is used, for example, by the Web Coverage Service (WCS) Standard [1] version 2.0 and higher, but is independent from WCS service. This augmented&#13;
+coverage structure can serve a wide range of coverage application domains and service types, thereby contributing to harmonization and interoperability.</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>profile</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

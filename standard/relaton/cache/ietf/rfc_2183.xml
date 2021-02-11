@@ -1,0 +1,72 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title format="text/plain" language="en" script="Latn">Communicating Presentation Information in Internet Messages: The Content-Disposition Header Field</title>
+  <uri type="xml">https://raw.githubusercontent.com/relaton/relaton-data-ietf/master/data/reference.RFC.2183.xml</uri>
+  <uri type="src">https://www.rfc-editor.org/info/rfc2183</uri>
+  <docidentifier type="IETF">RFC 2183</docidentifier>
+  <docidentifier type="rfc-anchor">RFC2183</docidentifier>
+  <docidentifier type="DOI">10.17487/RFC2183</docidentifier>
+  <date type="published">
+    <on>1997-08</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename language="en">R. Troost</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Internet Engineering Task Force</name>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename language="en">S. Dorner</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Internet Engineering Task Force</name>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="editor"/>
+    <person>
+      <name>
+        <completename language="en">K. Moore</completename>
+      </name>
+      <affiliation>
+        <organization>
+          <name>Internet Engineering Task Force</name>
+          <abbreviation>IETF</abbreviation>
+        </organization>
+      </affiliation>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Internet Engineering Task Force</name>
+      <abbreviation>IETF</abbreviation>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This memo provides a mechanism whereby messages conforming to the MIME specifications [RFC 2045, RFC 2046, RFC 2047, RFC 2048, RFC 2049] can convey presentational information.  It specifies the "Content- Disposition" header field, which is optional and valid for any MIME entity ("message" or "body part"). [STANDARDS-TRACK]</abstract>
+  <series type="main">
+    <title format="text/plain" language="en" script="Latn">RFC</title>
+    <number>2183</number>
+  </series>
+  <place>Fremont, CA</place>
+  <ext>
+    <doctype>rfc</doctype>
+  </ext>
+</bibdata>

@@ -1,0 +1,36 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC® Web Query Service </title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC® Web Query Service </title>
+  <uri type="obp">https://portal.ogc.org/files/?artifact_id=72295</uri>
+  <docidentifier type="OGC">14-121r2</docidentifier>
+  <date type="published">
+    <on>2016-12-22</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Peter Baumann</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>2</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This OGC Web Query Service (WQS) defines a service interface for retrieving any kind of subset of information provided by the server addressed. WQS is com¬pletely agnostic of any semantics and, therefore, not bound to any predefined structures, such as coordinates, fea-tures, coverages, or metadata. This makes WQS particularly suitable for retrieval from heter-ogeneous data offerings combining features, coverages, and catalog information in some ap-plication-defined way. A second use case is selective retrieval from a Capabilities document to avoid downloading large such documents and performing extraction on client side.&#13;
+To this end, the Query request type is defined which, based on an XPath expression as input, extracts the matching information from the service’s offering and returns it (currently: as an XML document).&#13;
+</abstract>
+  <ext>
+    <doctype>discussion-paper</doctype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

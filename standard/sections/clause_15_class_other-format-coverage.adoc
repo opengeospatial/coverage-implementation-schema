@@ -1,0 +1,13 @@
+[[class_other-format-coverage]]
+== Class _other-format-coverage_
+
+Class _other-format-coverage_ establishes how coverages are represented in encoding formats other than those defined in this standard.          Such formats may be able to encode only parts of a coverage (i.e., they are “informationally incomplete”), and they may be able to encode only specific categories of coverages (such as raster images, but not point clouds).
+
+[%unnumbered]
+[[req_41]]
+|===
+| Requirement 41
+
+| A coverage using the _other-format-coverage_ scheme *shall* implement class _coverage_.
+
+|===

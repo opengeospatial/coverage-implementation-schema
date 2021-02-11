@@ -1,0 +1,37 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC® WCS 2.0 Interface Standard- Core:  Corrigendum </title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC® WCS 2.0 Interface Standard- Core:  Corrigendum </title>
+  <uri type="obp">https://portal.ogc.org/files/?artifact_id=48428</uri>
+  <docidentifier type="OGC">09-110r4</docidentifier>
+  <date type="published">
+    <on>2012-07-12</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Peter Baumann</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>4</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">This document specifies how a Web Coverage Service (WCS) offers multi-dimensional cov-erage data for access over the Internet. This document specifies a core set of requirements that a WCS implementation must fulfil. WCS extension standards add further functionality to this core; some of these are required in addition to the core to obtain a complete implementa-tion. This document indicates which extensions, at a minimum, need to be considered in ad-dition to this core to allow for a complete WCS implementation.&#13;
+This core does not prescribe support for any particular coverage encoding format. This also holds for GML as a coverage delivery format: while GML constitutes the canonical format for the definition of WCS, it is not required by this core that a concrete instance of a WCS service implements the GML coverage format. WCS extensions specifying use of data encod-ing formats in the context of WCS are designed in a way that the GML coverage information contents specified in this core is consistent with the contents of an encoded coverage.&#13;
+</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

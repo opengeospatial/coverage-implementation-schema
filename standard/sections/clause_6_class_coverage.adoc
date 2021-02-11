@@ -1,0 +1,422 @@
+[obligation=informative]
+== Class _coverage_
+
+=== Overview
+Class _coverage_ lays the foundation for the coverage implementation schema. It is the core class of CIS, meaning that every coverage instance must conform to the requirements stated here. Class _coverage_ does not allow creating coverage instances, but rather provides the fundament for the further classes (see next Clauses) which define various specializations of which instance documents can be created.
+
+NOTE: Clause 6 establishes a concrete conceptual model of a coverage which is independent from any particular encoding. While, in addition to UML, GML sometimes is used for establishing this (in particular when concepts and definitions from GML 3.2.1 [2] are used where a UML representation is not provided by that standard), CIS does not anticipate a GML encoding. Various encodings are established in Clauses 12 onwards.
+
+This CIS 1.1 standard unifies OGC’s coverage implementation model. It does so by extending CIS 1.0 (also known as GMLCOV 1.0) with further ways to model and represent coverages, and by integrating the GML 3.3 grid types.
+
+[%unnumbered]
+[[req_1]]
+|===
+| Requirement 1
+
+| A coverage *shall* implement at least one of: this CIS 1.1 standard; the GMLCOV/CIS 1.0 standard; the GMLCOV/CIS 1.0 standard with the additional grid definitions provided with GML 3.3.
+
+|===
+With the introduction of the CIS GeneralGridCoverage type and its unified modelling of all grid types, the gridded types of GMLCOV/CIS 1.0 [5], GML 3.3 [3], and ReferenceableGridCoverage Extension [7] may get deprecated in future.
+
+=== Coverages
+
+Coverages are represented by some binary or ASCII serialization, specified by some data (en­coding) format. Coverage encoding is governed by specific standards. Some such encodings are defined as part of this standard in the classes _gml-coverage, json-coverage and rdf-coverage;_ further formats are allowed through class _other-format-coverage_. In any case, for an instantiation of the general coverage definition given in this Clause 6 a concrete encoding needs to be available in the implementation on hand.
+
+[%unnumbered]
+[[req_2]]
+|===
+| Requirement 2
+
+| A coverage instantiating class _coverage_  *shall* implement at least one of _gml-coverage_ , _json-coverage_, _rdf-coverage_, and _other-format-coverage_.
+
+|===
+
+NOTE: Not all encodings may be able to represent the full information making up a coverage, i.e.: not all encodings are informationally complete.
+
+A coverage contains a `DomainSet` component describing the coverage’s domain (the set of “direct positions”, i.e., the locations for which values are stored in the coverage) and a RangeSet component containing these stored values (often referred to as “pixels”, “voxels”) of the coverage. Further, a coverage contains a `RangeType` element which describes the coverage’s range set data structure (in the case of images usually called the “pixel data type”). Such a type often consists of one or more fields (also referred to as _bands_ or _channels_ or_variables_), however, much more general definitions are possible. For the description of the range value structure, SWE Common [OGC 08-094] `Data­Record` is used. The `metadata` component, finally, represents an extensible slot for metadata. The intended use is to hold any kind of application-specific metadata structures.
+
+NOTE: In this requirements class, _coverage_, a domain set invariably consists of a domain/range representation; requirements class _coverage-partitioning_ (Clause 17) will add partitioning and position/value pair list as alternatives. This is why coverage subtype CoverageByDomainAndRange is introduced in Figure 2; while it may seem artificial in this requirements class, it will allow modelling the alternative representations in the future.
+
+[%unnumbered]
+[[req_3]]
+|===
+| Requirement 3
+
+| A coverage instantiating class _coverage_*shall* con­form with Figure 2, Figure 3, Table 3, and Table 7.
+
+|===
+
+NOTE: The Envelope item may be modelled differently in different encodings. In GML, for example, the Envelope element is enclosed in a boundedBy element.
+
+The `id` attribute is the same as in GML and GMLCOV, but its type is extended from `NC­Name` to `string` to achieve a more human-readable style allowing for whitespace, special characters, globally unique naming schemes, etc.
+
+Coverages make heavy use of n-dimensional coordinates in a space that may be made up from spatial and/or temporal and/or “abstract” (i.e., non-spatio/temporal) axes. For representing direct positions of coverages, such n-dimensional coordinates are modelled through type CIS::DirectPosition. Each coordinate component is of the general type any­Simple­Type (in analogy to XML Schema) as it must accommodate data types as diverse as numbers (such as 1.23 degrees), dates (such as “2016-03-08”), and abstract categorical values (such as “orange”, “apple”). The order of the coordinates is given by the axis order of the CRS defined in the context in which the direct position is used.
+
+[#img_abstractcoverage,reftext='{figure-caption} {counter:figure-num}']
+.CIS::AbstractCoverage structure (as per class _coverage_)
+image::images/figure2.png[align="center"]
+
+
+.CIS::AbstractCoverage data structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| id | Identifier of the coverage | string a| One +
+ (mandatory)
+| coverage­Function | Function describing how range values at the coverage’s direct positions can be computed, as specified in GML 3.2.1 [2] Subclause 19.3.11 a| GML:: +
+ Coverage­Function
+a| Zero or one +
+ (optional)
+| envelope | Minimum bounding box of the coverage, as specified in GML 3.2.1 [2] Subclause 10.1.4.6 a| CIS:: +
+ Envelope­ByAxis
+a| One +
+ (mandatory)
+| domainSet | Definition of coverage domain, i.e., its set of direct positions a| CIS:: +
+ Domain­Set
+a| One +
+ (mandatory)
+| rangeSet | Coverage range values, each one  associated with a direct position a| CIS:: +
+ RangeSet
+a| One +
+ (mandatory)
+| rangeType | Structure definition of the coverage range values, as specified in SWE Common 2.0 [4] Clause 7 and 8 a| SWE Commmon +
+ ::Data­Record
+a| One +
+ (mandatory)
+| metadata | Application specific metadata, allowing for individual extensions a| CIS:: +
+ Extension
+a| Zero or one +
+ (optional)
+
+|===
+
+
+[#img_directposition,reftext='{figure-caption} {counter:figure-num}']
+.CIS::DirectPosition structure
+image::images/figure3.png[align="center"]
+
+=== CoverageFunction
+
+The coverageFunction component is identical in its syntax and meaning to the corresponding element defined in GML 3.2.1 [2] Subclause 19.3.11. It describes the mapping function from the domain to the range of the coverage. For a grid coverage, it specifies the serialization of the multi-dimensional grid in the range set.
+
+NOTE: This becomes particularly relevant when defining encoding formats, such as GML or JSON.
+
+NOTE: For the reader’s convenience, the default is copied from GML 3.2.1: If the gml:cover­age­Function property is omitted for a gridded coverage (including rectified gridded coverages) the gml:startPoint is assumed to be the value of the gml:low property in the gml:Grid geometry, and the gml:sequenceRule is assumed to be linear and the gml:axisOrder property is assumed to be “+1 +2”.
+
+=== Envelope and DomainSet
+
+The domain set determines the exact locations of a coverage overall and its set of direct positions. The domain set is defined through an ordered list of axes whose lower and upper bounds establish the extent along each axis. The axis sequence and their meaning is defined by the CRS which is given by a GML::SRSReferenceGroup consisting of the URI identifying the CRS. This domain set CRS is called the coverage’s _Native CRS_.
+
+Additionally, some redundant information is present in the domain set for efficiency reasons: the number of dimensions, axis labels, and UoM (Unit of Measure) labels simplify parsing the coverage as the parser does not have to retrieve the CRS definition, such as from the OGC CRS resolver at http://www.opengis.net/def/crs[http://www.opengis.net/def/crs] and http://www.opengis.net/def/crs-compound[http://www.opengis.net/def/crs-compound].
+
+The optional CIS::Envelope component helps applications in gaining a quick overview on the coverage’s location. The location information does not need to use the same CRS as the domain set, therefore the bounding box may not always be the minimal.
+
+NOTE: Particularly in presence of displaced axes, transformation axes, and discrete coverages the domain set can quickly become hard to oversee.
+
+[%unnumbered]
+[[req_4]]
+|===
+| Requirement 4
+
+| If present, the envelope of a  coverage instantiating class _coverage_ *shall* consist of a CIS::EnvelopeByAxis element conforming to Figure 4, Table 4, and Table 5.
+
+|===
+
+NOTE: As in GML 3.2.1, the envelope of a  coverage, if present, encloses the entire coverage instance; it does not have to be minimal, though (for example, if the envelope is in a different – possibly easier to evaluate – CRS such as WGS84 a minimal bounding box normally cannot be expressed exactly)..
+
+
+[#img_envelopebyaxis,reftext='{figure-caption} {counter:figure-num}']
+.CIS::EnvelopeByAxis structure
+image::images/figure4.png[align="center"]
+
+.CIS::EnvelopeByAxis structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| srsName | URL identifying the CRS of the coordinates in this coverage | anyURI a| One +
+ (mandatory)
+| srsDimension | Dimension (number of axes) of the grid | positive­Integer a| One +
+ (mandatory)
+| axisExtent | Sequence of extents of the grid along a specific axis, exactly one for each axis defined in the CRS referenced in srsName a| CIS:: +
+ AxisExtent
+a| One or more +
+ (mandatory)
+
+|===
+
+As the envelope coordinate values refer to a CRS and its axes it is necessary to link to those references. To this end, a CRS identifier is provided through a URL referencing its definition. Axes used by the coverage are identified by their position in the (ordered) list of axes given in the CRS. In the axisLabels string, alias names are established for the axes used in the axis­Ex­tent components, matched with the axis through their position in the sequence. Additionally, the units of measure are indicated for each axis.
+
+[%unnumbered]
+[[req_5]]
+|===
+| Requirement 5
+
+a| In the envelope of a coverage instantiating class _coverage_, if present, the value of srsName *shall* be a URL which points to a CRS definition which fulfils the following conditions: +
+ - srsDimension equals the dimension of the CRS (i.e., the number of axes); +
+ - the number of axisExtent items is equal to srsDimension; +
+ - in each axisExtent the uomLabel value equals the unit of measure of the corresponding CRS axis.
+
+|===
+
+NOTE: This definition relaxes the axisLabels handling as per GMLCOV/CIS 1.0 where the identifiers referenced in axisLabels had to be identical to the corresponding axisAbbrev value in the CRS definition. In CIS 1.1, coverage axisLabels and CRS axisAbbrev are decoupled so that there is no such dependency any longer. This definition is backwards compatible, i.e., coverages can continue to use CRS axisAbbrev values; note, though, that axisAbbrev values in subsequent versions of a CRS may change without notice, so the correspondence may get lost over time.
+
+Example:    The following envelope, encoded in XML, utilizes EPSG 4326 with two axis labels, “Lat” and “Long.” These labels correspond to the CRS axis abbreviations of EPSG v8.5, but not to EPSG v8.9.2 where the axis abbreviation for Longitude has been changed to “Lon”. In CIS 1.1, this is not an issue because (i) CRS axes are ordered and (ii) values in axisLabels are matched by position, so axis label “Long” is unambiguously associated with CRS axis abbreviated as “Lon.”
+
+[%unnumbered]
+[source, xml]
+----
+ <Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326"
+     axisLabels="Lat Long" srsDimension="2">
+     <AxisExtent axisLabel="Lat"
+        uomLabel="deg"
+        lowerBound="-80"
+        upperBound="-70"/>
+     <AxisExtent axisLabel="Long"
+        uomLabel="deg"
+        lowerBound="0"
+        upperBound="10"/>
+ </Envelope>
+----
+
+Actually, a coverage is completely free to use any identifier whereby the syntax of identifiers is given by the encoding used; in GML, for example, it is NCName. The following version is semantically identical to the above:
+
+[%unnumbered]
+[source, xml]
+----
+<Envelope srsName="http://www.opengis.net/def/crs/EPSG/0/4326"
+     axisLabels="a1 a2" srsDimension="2">
+     <AxisExtent axisLabel="a1"
+        uomLabel="deg"
+        lowerBound="-80"
+        upperBound="-70"/>
+     <AxisExtent axisLabel="a2"
+        uomLabel="deg"
+        lowerBound="0"
+        upperBound="10"/>
+ </Envelope>
+----
+
+This demonstrates that an axis label may be identical to the axis­Abbrev value in CRS definition, but does not have to.
+
+.CIS::AxisExtent structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| axisLabel | Shorthand axis identifier with scope given by the coverage document | string a| One +
+ (mandatory)
+| uomLabel | Shorthand identifier of the Unit of Measure used on this axis (as indicated in the CRS definition for this axis) | string a| One +
+ (mandatory)
+| lowerBound | Lowest coordinate along this axis | string a| One +
+ (mandatory)
+| upperBound | Highest coordinate along this axis | string a| One +
+ (mandatory)
+
+|===
+
+NOTE: At the time of this standard’s writing the widely used EPSG database – which forms the basis also for the OGC CRS resolver, http://www.opengis.net/def/crs/[http://www.opengis.net/def/crs/] - does not have unit symbols, only non-nor­mative names. Therefore, in general it is currently not possible to auto­matically deduce the unit of measure of an axis. Instead is recommended as a Best Practice to use the unit strings as defined by UCUM ( http://unitsofmeasure.org[http://unitsofmeasure.org]). All examples used in this standard utilize UCUM.
+
+[%unnumbered]
+[[req_6]]
+|===
+| Requirement 6
+
+| For each axisExtent in the EnvelopeByAxis element of a coverage the lowerBound *shall* be less than or equal to the upperBound.
+
+|===
+
+[%unnumbered]
+[[req_7]]
+|===
+| Requirement 7
+
+| In a coverage instantiating class _coverage_, the extent of CIS::Envelope (if present) *shall* enclose CIS::DomainSet along all dimensions.
+
+|===
+
+NOTE: In other words: the bounding box given by the domain set must be fully enclosed in the bounding box as defined in the envelope. This requirement follows already from GML 3.2.1 Subclause 9.3.1, but is repeated here as GML does not have a uniform treatment of spatial, temporal, and other dimensions.
+
+While the envelope can be approximate, the domain set is exact in its boundaries.
+
+[%unnumbered]
+[[req_8]]
+|===
+| Requirement 8
+
+| In a coverage instantiating class _coverage_, for all axes in a CIS::GeneralGrid where axis coordinates of direct positions are given explicitly, the lowest and highest value of these coordinates *shall* be equal to the lowerBound and upperBound value, respectively.
+
+|===
+
+Just like in their Envelope, Coverages in their DomainSet must have a 1:1 correlation between the axis names given in axis¬Labels and gridLabels, i.e.: they shall relate pairwise, given by their sequence position. For example, GeneralGrid axis-Labels=“Lat Long h date” and GridLimits axisLabels=”i j k l“ implies a corre-spondence of Lat with i, Long with j, h with k, and date with l. The value of srsDimension in this case is 4. On coverage instance level, though, this cannot be con-formance tested, therefore this is not a formal requirement.
+
+[%unnumbered]
+[[req_59]]
+|===
+| Requirement 59
+
+a| In the GeneralGrid of the DomainSet of a coverage instantiating class coverage the value of srsName shall be a URL which points to a CRS definition which fulfils the following conditions: +
+- srsDimension equals the dimension of the CRS (i.e., the number of axes); +
+- the number of axisExtent items is equal to srsDimension; +
+- all items listed in the axisLabels attribute are pairwise distinct, and for each item in this list there is exactly one axisExtent item with the same axisLabel value; +
+- in each axisExtent the uomLabel value equals the unit of measure of the corresponding CRS axis.
+
+|===
+
+=== RangeType
+
+==== Overview
+The RangeType component adds a structure description and technical metadata required for an appropriate (however, application independent) understanding of a coverage. For this structure description, the SWE Common Data­Record­ is used. Optionally, interpolation directives can be added.
+
+[%unnumbered]
+[[req_9]]
+|===
+| Requirement 9
+
+| In a coverage instantiating class _coverage_, the RangeType component *shall*have a structure as given in Table 6.
+
+|===
+
+.CIS::RangeType structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| dataRecord | Description of the common data type of all range values | SWE Common :: DataRecord a| One +
+ (mandatory)
+| interpolationRestriction | Constraints on the interpolation methods meaningfully applicable to this coverage | CIS::Inter­polation­Restriction a| Zero or one +
+ (optional)
+
+|===
+
+==== Range data type specification
+Specification of the common data type all range values share is done through the Data­Record part of the coverage’s RangeType component. Atomic data types available for range values are those given by the SWE Common data type Abstract­Simple­Com­pon­ent. As a range structure contains only structure definitions, but not the values themselves (these sit in the coverage range set component), the optional Abstract­SimpleComponent component value is suppressed in coverages.
+
+[%unnumbered]
+[[req_10]]
+|===
+| Requirement 10
+
+| In a coverage instantiating class _coverage_, for all SWE Common :: AbstractSimpleComponent items in a range type structure, instance multiplicity of the value component *shall*be zero.
+
+|===
+
+NOTE: Following  [4], omission of the value component implies that in a Data­Array there is no encoding component either.Range values can be structured as records or arrays. Both structuring principles can be nested (and mixed) to any depth for a concrete coverage range structure definition.
+
+[%unnumbered]
+[[req_11]]
+|===
+| Requirement 11
+
+| In a coverage instantiating class _coverage_, for all SWE Common AbstractDataComponent items in a cov­erage range type structure, the concrete subtype used *shall*be one of DataRecord and DataArray.
+
+|===
+NOTE: 1       These subtypes are not allowed: DataChoice, Vector, Matrix
+
+NOTE: 2       As array-valued ranges (i.e., nested arrays) can always be represented in a “flat” way by a single-level array with extra dimension(s) the use of such array-valued range types is discouraged as it adds complexity without additional value. Effectively, only DataRecord should be used.
+
+Within a DataRecord contained in a concrete range structure, each of its record components is locally uniquely identified by the record component’s field attribute, in accordance with the “soft-typing” property introduced by SWE Common.
+
+Example    The following XML fragment represents a valid range structure; it models the red, green, and blue channel of a Landsat scene. Pixels are defined as unsigned 8-bit quantities where 0 and 255 denote null values, representing radiance values measured in W/cm^2^:
+
+[%unnumbered]
+[source,xml]
+----
+<RangeType>
+     <swe:DataRecord>    
+      <swe:field name="red">
+         <swe:Quantity definition="http://opengis.net/def/property/OGC/0/Radiance">
+             <swe:uom code="W/cm2"/>
+         </swe:Quantity>
+     </swe:field>
+     <swe:field name="green">
+          <swe:Quantity definition="http://opengis.net/def/property/OGC/0/Radiance">
+              <swe:uom code="W/cm2"/>
+          </swe:Quantity>
+     </swe:field>
+     <swe:field name="blue">
+         <swe:Quantity definition="http://opengis.net/def/property/OGC/0/Radiance">
+             <swe:uom code="W/cm2"/>
+         </swe:Quantity>
+     </swe:field>
+    </swe:DataRecord>   
+ </RangeType>
+----
+
+
+NOTE: While SWE Common is confined to XML, a coverage can be encoded in any suitable format. Therefore, the GML examples are of informative nature only, but not constraining to this format.
+
+==== Interpolation and continuous coverages
+
+A continuous (grid) coverage as defined in Abstract Topic 6 [1] has values not only at the direct positions themselves, but also in between those positions – in other words, it is valid to apply interpolation to obtain values between direct positions.
+
+Technically, a continuous grid coverage consists of a grid coverage with an interpolation method associated. Notably, often there is more than one interpolation method which can be applied meaningfully.
+
+Example    A satellite image can be interpolated by _nearest neighbor_, _linear_, _quadratic_, and several more methods. A land use map, on the other hand, can only be interpolated using _nearest-neighbor_.
+
+In the CIS::allowedInterpolation element an application can specify which interpolation methods are meaningful (hence, allowed) on the coverage on hand. Without such an element, any interpolation is admissible on the coverage.
+
+.Table :         CIS::InterpolationRestriction structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| allowed­Interpolation | Constraint on the interpolation methods meaningfully applicable to this coverage | anyURI a| Zero or more +
+ (optional)
+
+|===
+
+The InterpolationRestriction element is meant to be interpreted as follows:
+
+* If no interpolationRestriction element is present, then any interpolation method is applicable to the coverage on hand; or
+* In presence of an interpolationRestriction element, only those interpolation meth­ods may be meaningfully applied whose identifiers appear in an allow­ed­Inter­pol­ation element; in case of an empty list this means that no interpolation is applicable at all.
+
+NOTE: As selection of a particular interpolation method is at the discretion of the application processing a coverage, the interpolation behavior is not testable on the level of coverage definition and, therefore, cannot be put into a formal, testable requirement.
+
+Example    In a XML encoding, the following constitutes a valid interpolation restriction (using OGC-defined URLs for identifying interpolation methods as defined in ISO 19123) indicating that nearest-neighbor and linear interpolation are admissible on the coverage on hand:
+
+[%unnumbered]
+[source, xml]
+----
+<InterpolationRestriction>
+    <AllowedInterpolation>
+ *     http://www.opengis.net/def/interpolation/OGC/1/nearest-neighbor*
+    </AllowedInterpolation>
+    <AllowedInterpolation>
+      *http://www.opengis.net/def/interpolation/OGC/1/linear
+*   </AllowedInterpolation>
+ </InterpolationRestriction>
+----
+
+=== RangeSet
+
+The range set contains the actual values, each of which is associated with one direct position as defined in the domain set.
+
+Both DomainSet and RangeType describe the coverage values given in the RangeSet. Hence, consistency must be enforced between them. The pertaining requirements are listed below.
+
+There must be a 1:1 correspondence between direct positions and range values. Neither duplicates nor values omitted are allowed.
+
+NOTE: For range values not known null values can be used.
+
+[%unnumbered]
+[[req_12]]
+|===
+| Requirement 12
+
+| In a coverage instantiating class _coverage_, for each coordinate position contained in the domain set description of a coverage there *shall* exist exactly one range value in the coverage’s range set.
+
+|===
+
+NOTE: For each of the coverage subtypes the number of direct positions in the domain set is determined individually, as this varies greatly across the types.
+
+NOTE: This applies to CIS::IrregularAxis, the CIS::Displacement, and the CIS::TransformationModel.
+
+[%unnumbered]
+[[req_13]]
+|===
+| Requirement 13
+
+| In a coverage instantiating class _coverage_, all range values contained in the range set of this coverage *shall* be consistent with the struct­ure description provided in its range type.
+
+|===
+
+The data type of all range values is the same, it is given by the range type defined through a SWE::DataRecord. In particular, in a coverage instantiating class _coverage_, atomic values inside a composite value shall be listed exactly in the same sequence as the range type components whereby arrays are treated like records, serialized in their natural ascending sequence.
+
+NOTE: This last sentence is not conformance testable on this standardization target (coverage instance), therefore not expressed as a requirement. However, at service level this requirement may be testable indeed.
+
+=== Metadata
+
+The metadata component is a carrier for any kind of application dependent metadata. Hence, no requirements are imposed here.
+
+NOTE: Implementations may impose restrictions on metadata stored (such as their sheer volume).

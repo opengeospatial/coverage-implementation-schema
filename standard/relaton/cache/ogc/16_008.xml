@@ -1,0 +1,38 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC Geoscience Markup Language 4.1 (GeoSciML)</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC Geoscience Markup Language 4.1 (GeoSciML)</title>
+  <uri type="obp">http://docs.opengeospatial.org/is/16-008/16-008.html</uri>
+  <docidentifier type="OGC">16-008</docidentifier>
+  <date type="published">
+    <on>2017</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>GeoSciML Modeling Team</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">GeoSciML is a model of geological features commonly described and portrayed in geological maps, cross sections, geological reports and databases.  The model was developed by the IUGS CGI (Commission for the Management and Application of Geoscience Information) and version 4.1 is the first version officially submitted as an OGC standard.  This specification describes a logical model and GML/XML encoding rules for the exchange of geological map data, geological time scales, boreholes, and metadata for laboratory analyses.  It includes a Lite model, used for simple map-based applications; a basic model, aligned on INSPIRE, for basic data exchange; and an extended model to address more complex scenarios.  &#13;
+&#13;
+The specification also provides patterns, profiles (most notably of Observations and Measurements - ISO19156), and best practices to deal with common geoscience use cases. &#13;
+&#13;
+</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

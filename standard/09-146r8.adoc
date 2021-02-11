@@ -1,0 +1,83 @@
+= OGC® Coverage Implementation Schema with Corrigendum
+:doctype: IS
+:docsubtype: implementation
+:status: Approved
+:committee: technical
+:draft: 1.1
+:abbrev: CIS
+:edition: 1.1
+:external-id: http://www.opengis.net/doc/{doctype}/{abbrev}/{edition}
+:docnumber: 09-146r8
+:received-date: 2019-06-06
+:issued-date: 2019-06-27
+:published-date: 2019-10-28
+:fullname: Peter Baumann, Eric Hirschorn, Joan Masó
+:keywords: ogcdoc, Ogcdoc, coverage, gridded data, datacube, timeseries, sensor model, point cloud, mesh
+:submitting-organizations: Jacobs University Bremen; Envitia Ltd; European Union Satellite Center
+:docfile: 09-146r8.adoc
+:mn-document-class: ogc
+:mn-output-extensions: xml,html,doc,pdf
+:local-cache-only:
+:data-uri-image:
+:pdf-uri: ./09-146r8.pdf
+:xml-uri: ./09-146r8.xml
+:doc-uri: ./09-146r8.doc
+
+
+////
+Make sure to complete each included document
+////
+include::sections/clause_0_front_material.adoc[]
+
+include::sections/clause_1_scope.adoc[]
+
+include::sections/clause_2_conformance.adoc[]
+
+include::sections/clause_3_references.adoc[]
+
+include::sections/clause_4_terms_and_definitions.adoc[]
+
+include::sections/clause_5_conventions.adoc[]
+
+include::sections/clause_6_class_coverage.adoc[]
+
+include::sections/clause_7_class_grid-regular.adoc[]
+
+include::sections/clause_8_class_grid-irregular.adoc[]
+
+include::sections/clause_9_class_grid-transformation.adoc[]
+
+include::sections/clause_10_class_discrete-pointcloud.adoc[]
+
+include::sections/clause_11_class_discrete-mesh.adoc[]
+
+include::sections/clause_12_class_gml-coverage.adoc[]
+
+include::sections/clause_13_class_json-coverage.adoc[]
+
+include::sections/clause_14_class_rdf-coverage.adoc[]
+
+include::sections/clause_15_class_other-format-coverage.adoc[]
+
+include::sections/clause_16_class_multipart-coverage.adoc[]
+
+include::sections/clause_17_coverage-partitioning.adoc[]
+
+include::sections/clause_18_container.adoc[]
+
+////
+add or remove annexes after "A" as necessary
+////
+include::sections/annex-a.adoc[]
+
+include::sections/annex-b.adoc[]
+
+include::sections/annex-c.adoc[]
+
+////
+Revision History should be the last annex before the Bibliography
+Bibliography should be the last annex
+////
+include::sections/annex-history.adoc[]
+
+//include::sections/annex-bibliography.adoc[]

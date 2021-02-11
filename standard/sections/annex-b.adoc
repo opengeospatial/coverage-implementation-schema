@@ -1,0 +1,17 @@
+[appendix,obligation="informative"]
+[[uml]]
+== Complete CIS::AbstractCoverage UML diagram collection (Non-Normative)
+
+This Annex summarizes the UML diagrams presented in the normative part. For the reader’s convenience, they are split into coverage types, coverage structure, and grid coverages.
+
+[#img_coverage_types,reftext='{figure-caption} {counter:figure-num}']
+.Coverage types
+image::images/figure14.png[align="center"]
+
+[#img_coverage_structure,reftext='{figure-caption} {counter:figure-num}']
+.Coverage structure
+image::images/figure15.png[align="center"]
+
+[#img_grid_coverages,reftext='{figure-caption} {counter:figure-num}']
+.Grid coverages
+image::images/figure16.png[align="center"]

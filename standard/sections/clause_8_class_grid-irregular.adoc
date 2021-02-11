@@ -1,0 +1,106 @@
+[[class_grid-irregular]]
+== Class _grid-irregular_
+
+=== Overview
+
+This class _grid-irregular_ adds coverages of irregular axis types to the GeneralGrid­Cov­er­age introduced with class _grid-regular_. Figure 6 shows some common 2-D grid types tractable with class _grid-irregular_.The concept builds upon axis types with individual characteristics, such as non-referenced, referenced-equidistant, referenced-nonequidistant, etc. from which CRSs and, hence, grids are assembled. All axis types can be combined freely in a grid. This model includes the GML 3.3 [3] grid types Refe­ren­ceableGridByVector and Reference­able­GridBy­Array as special cases and allows representing all grid types..
+
+[#img_some_grid_types,reftext='{figure-caption} {counter:figure-num}']
+.Some grid types: equidistant (far left), equidistant-skewed (left), irregular (right), displaced (far right) [2]
+image::images/figure6.png[align="center"]
+
+NOTE: Skewed and rotated grids such as shown in Figure 6 can be represented by making the grid’s CRS a concatenation of any given CRS with an Engineering CRS describing, e.g., any affine transformation of the original grid.
+
+=== Irregular independent grid axes
+
+The first extension over regular axes consists of irregular axes where spacing along an axis can have any positive increment. Graphically, this can be represented by straight lines (but consider that existence of values between direct positions is possibly guided by interpolation restrictions). Such axes are modelled by type CIS::IrregularAxis.Example    This allows grid representations like swath data, but also mixes like _Lat/Long/t_ datacubes over orthorectified imagery where _Lat_ and _Long_ are equidistant while acquisition time, hence _t_, is irregular. This is schematically shown in Figure 7 (left).
+
+=== Irregular correlated grid axes
+The second extension consists of building axis groups, informally called "nests", within which the coordinates of direct positions are not tied to the crossing points of "straight" grid lines. Instead, coordinates can vary freely; however, the topological neighborhood relationship is retained. This leads to “displaced grids” as shown in Figure 6 far right (but consider that the curves drawn suggest a particular interpolation scheme which may or may not be allowed as per interpolation restrictions).Not all axes in a grid need to participate in a nest, and a grid may contain several disjoint nests (although this case is unlikely).Example    A grid displaced in _Lat/Long_ may also contain a time axis not involved in this nest. This situation is shown in Figure 7 where the vertical axis is not involved in the displacement field. Further, a grid may contain several nests, which, however, need to be disjoint in their participating axis sets.
+
+[#img_sample_grid,reftext='{figure-caption} {counter:figure-num}']
+.Sample grid combining regular and irregular axes (left) and irregular axes and "displaced" grids; time axis is drawn vertically
+image::images/figure7.png[align="center"]
+
+Class _grid-irregular_ extends class _grid-regular_ with further axis types, hence it requires implementation of that class.
+
+[%unnumbered]
+[[req_19]]
+|===
+| Requirement 19
+
+| A coverage instantantiating class _grid-irregular_*shall* conform with class _grid-regular_.
+
+|===
+
+The new axis types require storage of additional information. While for a regular axis a single resolution value is sufficient per axis, irregular grids require a sequence of direct positions along the axis (axis type CIS::IrregularAxis).Nests require an n-D tensor, i.e., an array which stores the coordinates of each direct position for the axes participating in the nest (cf. CIS::Dis­place­mentAxisNest).
+
+[%unnumbered]
+[[req_20]]
+|===
+| Requirement 20
+
+| A coverage using the _grid-irregular_ scheme *shall* conform with Figure 8, Table 14, and Table 15.
+
+|===
+An irregular axis abandons the equidistant spacing of a regular axis. Therefore, all direct positions along such an axis must be enumerated explicitly which is achieved by replacing the lower bound / resolution / upper bound scheme by an ordered list of direct positions.
+
+NOTE: GML 3.3 type ReferenceableGridByVector resembles the special case that all axes are irregular, but independent. In CIS, this is modelled through a CIS::GeneralGrid that has only axes of type CIS::IrregularAxis. .
+
+[#img_uml_of_cis,reftext='{figure-caption} {counter:figure-num}']
+.UML diagram of CIS::GeneralGrid  structure as per _grid-irregular_
+image::images/figure8.png[align="center"]
+
+.Table :      CIS::IrregularAxis structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| direct­Positions | Ordered sequence of direct positions along this axis | CIS::Direct­PositionType a| One or more +
+ (mandatory)
+| uomLabel | unit of measure in which values along this axis are expressed | String a| One +
+ (mandatory)
+
+|===
+
+An axis being part of a displacement grouping generalizes irregular axes further. Several axes together represent a grid where the individual direct positions of range values are situated arbitrary in space/time. The CIS::DisplacementAxisNest combines several axes to a single “nest” where the coordinates are enumerated individually for each direct pos­ition.There­fore, the direct positions are no longer associated with individual axes, but collectively form an array (tensor) which is stored in the CIS::DisplacementAxisNest structure, associat­ed with the axes involved. The linearization scheme of this array is stated in the sequ­en­ceRule the same way as the linearization is described for the range set array.
+
+.Table :      CIS::DisplacementAxisNest structure
+|===
+h| Name h| Definition h| Data type h| Multiplicity
+| axisLabels | Axes involved in the “nest” of displaced direct positions; these axes *shall* form a subset of the CIS::General­Grid axisLabels | string a| One or more +
+ (mandatory)
+| uomLabels | units of measure in which values along the axes are expressed | string a| One or more +
+ (mandatory)
+| direct­Positions | Array of direct positions along this axis, linearized according to the sequence rule or, if missing, along the GML 3.2.1 [2] default | string a| One or more +
+ (mandatory)
+| sequenceRule | Description of the array  linearization in direct­Pos­it­ions, according to the GML 3.2.1 [2] sequence rule a| GML:: +
+ sequenceRule
+a| Zero or one +
+ (optional)
+
+|===
+NOTE: Not all axes of a coverage need to participate in such a displacement “nest”. For example, Lat and Long may form a surface in 3-D space whereas time axis is irregular. This is the case described in Figure 7 (right).
+
+NOTE: The GML 3.3 type ReferenceableGridByArray resembles the special case that all axes form one nest – in other words, for each range value its direct position is explicitly listed in the domain set. This case is reflected in CIS through a CIS::GeneralGrid which has only axes of type CIS::Dis­placement­Axis with one CIS::DisplacementAxisNest array (holding the direct position coordinates) associated with all these axes.
+
+[%unnumbered]
+[[req_21]]
+|===
+| Requirement 21
+
+| In a coverage using the _grid-irregular_ scheme, the directPosition values in any CIS::IrregularAxis *shall* be listed in strictly monotonic order, expressed in the units of measure of this axis as defined in the CRS identified in the srsName item of the envelope.
+
+|===
+
+“Strictly monotonic” means that the sequence of position values is either completely in increasing order, or decreasing. Neither are changes in direction is allowed, nor equality of any two positions. This is to ensure that applications will not run into singularities causing, e.g., a division by zero. +
+ There is no corresponding monotonicity requirement on displaced axes (in the way Requirement 21 states for irregular axes). In practice, coverage generators should avoid grids that may lead to issues in coverage consumers - for example, singularities like neighboring points sharing the same coordinate could lead to a division by zero. Conversely, applications reading coverages should be ruggedized to cope with borderline cases in an appropriate way.
+
+[%unnumbered]
+[[req_22]]
+|===
+| Requirement 22
+
+| In a coverage using the _grid-irregular_ scheme, for any two CIS::DisplacementAxis­Nest elements their set of axis names *shall* be disjoint.
+
+|===
+
+All combinations of axis types index and regular (from class _grid-regular_) as well as irregular and displaced (from class _grid-irregular_) are permitted. However, no two axes may have the same name (i.e., axis label).Example    In a _Lat/Long/t_ timeseries datacube, axes _Lat_ and _Long_ form a nest represented by two axes with axis name _Lat_ and _Long_, resp., of type CIS::RegularAxis and one axis named _t_ of type CIS ::IrregularAxis storing all the image acquisition timestamps.

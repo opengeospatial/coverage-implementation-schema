@@ -1,0 +1,35 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC® WaterML 2.0: Part 1- Timeseries</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC® WaterML 2.0: Part 1- Timeseries</title>
+  <uri type="obp">https://portal.opengeospatial.org/files/?artifact_id=57222</uri>
+  <docidentifier type="OGC">10-126r4</docidentifier>
+  <date type="published">
+    <on>2014</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Peter Taylor</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>4</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">WaterML 2.0 is a standard information model for the representation of water observations data, with the intent of allowing the exchange of such data sets across information systems. Through the use of existing OGC standards, it aims at being an interoperable exchange format that may be re-used to address a range of exchange requirements, some of which are described later in this document.</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

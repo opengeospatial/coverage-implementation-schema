@@ -1,0 +1,52 @@
+<bibdata type="standard">
+  <fetched>2020-08-04</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC® SensorML: Model and XML Encoding Standard</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC® SensorML: Model and XML Encoding Standard</title>
+  <uri type="obp">https://portal.opengeospatial.org/files/?artifact_id=55939</uri>
+  <docidentifier type="OGC">12-000</docidentifier>
+  <date type="published">
+    <on>2014</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Mike Botts</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Alexandre Robin</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">The primary focus of the Sensor Model Language (SensorML) is to provide a robust and&#13;
+semantically-tied means of defining processes and processing components associated&#13;
+with the measurement and post-measurement transformation of observations. This&#13;
+includes sensors and actuators as well as computational processes applied pre- and postmeasurement.&#13;
+The main objective is to enable interoperability, first at the syntactic level and later at the&#13;
+semantic level (by using ontologies and semantic mediation), so that sensors and&#13;
+processes can be better understood by machines, utilized automatically in complex&#13;
+workflows, and easily shared between intelligent sensor web nodes.&#13;
+This standard is one of several implementation standards produced under OGC’s Sensor&#13;
+Web Enablement (SWE) activity. This standard is a revision of content that was&#13;
+previously integrated in the SensorML version 1.0 standard (OGC 07-000).</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>

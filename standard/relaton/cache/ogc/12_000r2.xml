@@ -1,0 +1,55 @@
+<bibdata type="standard">
+  <fetched>2021-02-09</fetched>
+  <title type="title-main" format="text/plain" language="en" script="Latn">OGC SensorML: Model and XML Encoding Standard</title>
+  <title type="main" format="text/plain" language="en" script="Latn">OGC SensorML: Model and XML Encoding Standard</title>
+  <uri type="obp">http://docs.ogc.org/is/12-000r2/12-000r2.html</uri>
+  <docidentifier type="OGC">12-000r2</docidentifier>
+  <date type="published">
+    <on>2020-08-10</on>
+  </date>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Mike Botts</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Alexandre Robin</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="author"/>
+    <person>
+      <name>
+        <completename>Eric Hirschorn</completename>
+      </name>
+    </person>
+  </contributor>
+  <contributor>
+    <role type="publisher"/>
+    <organization>
+      <name>Open Geospatial Consortium</name>
+    </organization>
+  </contributor>
+  <edition>2</edition>
+  <language>en</language>
+  <script>Latn</script>
+  <abstract format="text/plain" language="en" script="Latn">The primary focus of the Sensor Model Language (SensorML) is to provide a robust and semantically-tied means of defining processes and processing components associated with the measurement and post-measurement transformation of observations. This includes sensors and actuators as well as computational processes applied pre- and post-measurement.&#13;
+&#13;
+The main objective is to enable interoperability, first at the syntactic level and later at the semantic level (by using ontologies and semantic mediation), so that sensors and processes can be better understood by machines, utilized automatically in complex workflows, and easily shared between intelligent sensor web nodes.&#13;
+&#13;
+This standard is one of several implementation standards produced under OGC’s Sensor Web Enablement (SWE) activity. This standard is a revision of content that was previously integrated in the SensorML version 1.0 standard (OGC 07-000).</abstract>
+  <ext>
+    <doctype>standard</doctype>
+    <docsubtype>implementation</docsubtype>
+    <editorialgroup>
+      <committee>technical</committee>
+    </editorialgroup>
+  </ext>
+</bibdata>
