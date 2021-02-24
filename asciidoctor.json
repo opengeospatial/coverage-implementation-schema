@@ -1,0 +1,12 @@
+{
+        "1": {
+                "OGC_doc_number": "09-146r8",
+                "urn":"http://www.opengis.net/doc/IS/cis/1.1",
+                "title":"OGC Coverage Implementation Schema",
+                "path":"standard/09-146r8.adoc",
+                "options": ["--trace"],
+                "a":[
+                        "data-uri"
+                ]
+        }
+}
