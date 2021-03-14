@@ -104,7 +104,7 @@
 					"uomLabel": "d"
 				}]
 			},
-			"coverageRef": "http://www.acme.com/wcs?SERVICE=WCS&amp;VERSION=2.0&amp;REQUEST=GetCoverage&amp;COVERAGEID=CIS_004"
+			"coverageRef": "http://www.acme.com/wcs?SERVICE=WCS&VERSION=2.0&REQUEST=GetCoverage&COVERAGEID=CIS_004"
 		}]
 	},
 	"rangeType": {

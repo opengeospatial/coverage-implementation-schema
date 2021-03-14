@@ -9,7 +9,7 @@
 		"generalGrid":{
 			"type": "GeneralGridCoverageType",
 			"id": "examples:CIS_DS_GG_60_3D",
-			"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&amp;2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
+			"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
 			"axisLabels": ["Lat", "Long", "date"],
 			"axis": [{
 				"type": "RegularAxisType",
