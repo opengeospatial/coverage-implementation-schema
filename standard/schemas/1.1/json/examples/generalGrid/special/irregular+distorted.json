@@ -10,11 +10,11 @@
 			"type": "GeneralGridCoverageType",
 			"id": "examples:CIS_DS_GG_46",
 			"srsName": "http://www.opengis.net/def/crs/EPSG/0/4979",
-			"axisLabels": ["Lat", "Long", "h"],
+			"axisLabels": ["Lat", "Lon", "h"],
 			"displacement": {
 				"type": "DisplacementAxisNestType",
 				"id": "examples:CIS_DS_GG_D_46",
-				"axisLabels": ["Lat", "Long"],
+				"axisLabels": ["Lat", "Lon"],
 				"uomLabels": ["deg", "deg"],
 				"coordinates": [[-90, 0], [-87, 1], [-82, 2], [-89, 4], [-86, 5], [-81, 6], [-88, 8], [85, 9], [80, 10],
 							[-90, 0], [-87, 1], [-82, 2], [-89, 4], [-86, 5], [-81, 6], [-88, 8], [85, 9], [80, 10],
