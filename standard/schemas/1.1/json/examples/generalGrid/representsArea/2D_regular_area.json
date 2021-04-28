@@ -1,0 +1,85 @@
+{
+   "@context": ["http://localhost/json-ld/coverage-context.json", {"examples": "http://www.opengis.net/cis/1.1/examples/"}],
+   "type": "CoverageByDomainAndRange",
+   "id": "examples:CIS_10_2D",
+   "domainSet":{
+      "@context": "http://localhost/json-ld/domainset-context.json",
+      "type": "DomainSet",
+      "id": "examples:CIS_DS_10_2D",
+      "generalGrid":{
+         "type": "GeneralGridCoverage",
+         "id": "examples:CIS_DS_GG_10_2D",
+         "srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
+         "axisLabels": ["Lat", "Lon"],
+         "axis": [{
+            "type": "RegularAxis",
+            "id": "examples:CIS_DS_GG_LAT_10_2D",
+            "axisLabel": "Lat",
+            "lowerBound": -80,
+            "upperBound": -70,
+            "uomLabel": "deg",
+            "resolution": 5
+         },{
+            "type": "RegularAxis",
+            "id": "examples:CIS_DS_GG_LONG_10_2D",
+            "axisLabel": "Lon",
+            "lowerBound": 0,
+            "upperBound": 10,
+            "uomLabel": "deg",
+            "resolution": 5
+         }],
+         "gridLimits": {
+            "type": "GridLimits",
+            "id": "examples:CIS_DS_GG_GL_10_2D",
+            "srsName": "http://www.opengis.net/def/crs/OGC/0/Index2D",
+            "axisLabels": ["i", "j"],
+            "axis": [{
+               "type": "IndexAxis",
+               "id": "examples:CIS_DS_GG_GL_I_10_2D",
+               "axisLabel": "i",
+               "lowerBound": 0,
+               "upperBound": 1
+            },{
+               "type": "IndexAxis",
+               "id": "examples:CIS_DS_GG_GL_J_10_2D",
+               "axisLabel": "j",
+               "lowerBound": 0,
+               "upperBound": 1
+            }]
+         }
+      }
+   },
+   "rangeSet": {
+      "@context": "http://localhost/json-ld/rangeset-context.json",
+      "type": "RangeSet",
+      "id": "examples:CIS_RS_10_2D",
+      "dataBlock": {
+         "id": "examples:CIS_RS_DB_10_2D",
+         "type": "VDataBlock",
+         "values": [
+            1,2,
+            4,5
+         ]
+      }
+   },
+   "rangeType": {
+      "@context": "http://localhost/json-ld/rangetype-context.json",
+      "type": "DataRecord",
+      "id": "examples_CIS_RT_10_2D",
+      "field": [
+         {
+            "type": "Quantity",
+            "name": "band1",
+            "description": "detailed description of the band",
+            "definition": "http://opengis.net/def/property/OGC/0/Radiance",
+            "encodingInfo": {
+               "dataType": "http://www.opengis.net/def/dataType/OGC/0/unsignedInt",
+               "significantBits": 12,
+               "scaledBy": 4096.0,
+               "offsetBy": 0
+            },
+            "uom": { "code": "W.m-2.sr-1.nm-1" }
+         }
+      ]
+   }
+}
