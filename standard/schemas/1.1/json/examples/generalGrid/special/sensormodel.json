@@ -10,11 +10,11 @@
 			"type": "GeneralGridCoverageType",
 			"id": "examples:CIS_DS_GG_80",
 			"srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
-			"axisLabels": ["Lat", "Long"],
+			"axisLabels": ["Lat", "Lon"],
 			"model": {
 				"type": "TransformationBySensorModelType",
 				"id": "examples:CIS_DS_GG_TSM_80",
-				"axisLabels": ["Lat", "Long"],
+				"axisLabels": ["Lat", "Lon"],
 				"uomLabels": ["deg", "deg"],
 				"sensorModelRef": "http://www.sensorml.com/sensorML-2.0/examples/csmFrame.html",
 				"sensorInstanceRef": "http://www.sensorml.com/sensorML-2.0/examples/myHDCamera.html"

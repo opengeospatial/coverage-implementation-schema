@@ -10,7 +10,7 @@
 			"type": "GeneralGridCoverageType",
 			"id": "examples:CIS_DS_GG_30_4D",
 			"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4979&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-			"axisLabels": ["Lat", "Long", "h", "date"],
+			"axisLabels": ["Lat", "Lon", "h", "ansi"],
 			"axis": [{
 				"type": "RegularAxisType",
 				"id": "examples:CIS_DS_GG_LAT_30_4D",
@@ -22,7 +22,7 @@
 			},{
 				"type": "RegularAxisType",
 				"id": "examples:CIS_DS_GG_LONG_30_4D",
-				"axisLabel": "Long",
+				"axisLabel": "Lon",
 				"lowerBound": 0,
 				"upperBound": 10,
 				"uomLabel": "deg",
@@ -36,7 +36,7 @@
 			},{
 				"type": "IrregularAxisType",
 				"id": "examples:CIS_DS_GG_DATE_30_4D",
-				"axisLabel": "date",
+				"axisLabel": "ansi",
 				"uomLabel": "d",
 				"coordinate": ["2015-12-01", "2015-12-02"]
 			}],

@@ -7,7 +7,7 @@
 		"type": "EnvelopeByAxisType",
 		"id": "examples:CIS_EV_15_2D",
 		"srsName": "http://www.opengis.net/def/crs/OGC/0/Index2D",
-		"axisLabels": ["Lat", "Long"],
+		"axisLabels": ["Lat", "Lon"],
 		"axis": [{
 			"type": "AxisExtentType",
 			"id": "examples:CIS_EV_LAT_15_2D",
@@ -18,7 +18,7 @@
 		},{
 			"type": "AxisExtentType",
 			"id": "examples:CIS_EV_LONG_15_2D",
-			"axisLabel": "Long",
+			"axisLabel": "Lon",
 			"lowerBound": 0,
 			"upperBound": 10,
 			"uomLabel": "deg"
@@ -32,7 +32,7 @@
 			"type": "GeneralGridCoverageType",
 			"id": "examples:CIS_DS_GG_15_2D",
 			"srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
-			"axisLabels": ["Lat", "Long"],
+			"axisLabels": ["Lat", "Lon"],
 			"axis": [{
 				"type": "RegularAxisType",
 				"id": "examples:CIS_DS_GG_LAT_15_2D",
@@ -44,7 +44,7 @@
 			},{
 				"type": "RegularAxisType",
 				"id": "examples:CIS_DS_GG_LONG_15_2D",
-				"axisLabel": "Long",
+				"axisLabel": "Lon",
 				"lowerBound": 0,
 				"upperBound": 10,
 				"uomLabel": "deg",

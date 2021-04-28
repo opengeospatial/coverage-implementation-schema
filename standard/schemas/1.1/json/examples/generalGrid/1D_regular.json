@@ -10,7 +10,7 @@
 			"type": "GeneralGridCoverageType",
 			"id": "examples:CIS_DS_GG_40_1D",
 			"srsName": "http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-			"axisLabels": ["Lat", "Long"],
+			"axisLabels": ["ansi"],
 			"axis": [{
 				"type": "RegularAxisType",
 				"id": "examples:CIS_DS_GG_LAT_40_1D",

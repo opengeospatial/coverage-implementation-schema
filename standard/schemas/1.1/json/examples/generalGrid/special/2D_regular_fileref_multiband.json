@@ -20,7 +20,7 @@
 						"type": "GeneralGridCoverageType",
 						"id": "examples:CIS_DS_GG_12_2D",
 						"srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
-						"axisLabels": ["Lat", "Long"],
+						"axisLabels": ["Lat", "Lon"],
 						"axis": [{
 							"type": "RegularAxisType",
 							"id": "examples:CIS_DS_GG_LAT_12_2D",
@@ -32,7 +32,7 @@
 						},{
 							"type": "RegularAxisType",
 							"id": "examples:CIS_DS_GG_LONG_12_2D",
-							"axisLabel": "Long",
+							"axisLabel": "Lon",
 							"lowerBound": 0,
 							"upperBound": 10,
 							"uomLabel": "deg",
