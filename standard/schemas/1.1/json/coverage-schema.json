@@ -211,6 +211,7 @@
 								"type": "object",
 								"required": [ "type"],
 								"properties": {
+                           "type": { "enum": [ "GridLimitsType" ] },
 									"indexAxis": {
 										"title": "Index Axis",
 										"description": "An Index Axis is an axis with only integer positions allowed.",
@@ -368,7 +369,7 @@
 						"type": "array",
 						"items": {
 							"title": "quantity",
-							"description": "quantiy",
+							"description": "quantity",
 							"type": "object",
 							"required": [ "type"],
 							"properties": {
@@ -433,5 +434,5 @@
 			"description": "The metadata element is a container of any (not further specified) information which should be transported along with the coverage on hand, such as domain-specific metadata.",
 			"type": "object"
 		}
-      }
+   }
 }
