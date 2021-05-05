@@ -14,11 +14,11 @@
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_P1_E_55_1D",
 				"srsName": "http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-				"axisLabels": ["ansi"],
+				"axisLabels": ["date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_P1_DATE_55_1D",
-					"axisLabel": "ansi",
+					"axisLabel": "date",
 					"lowerBound": "2015-09-20",
 					"upperBound": "2015-09-20",
 					"uomLabel": "d"
@@ -79,11 +79,11 @@
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_P2_E_55_1D",
 				"srsName": "http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-				"axisLabels": ["ansi"],
+				"axisLabels": ["date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_P2_DATE_55_1D",
-					"axisLabel": "ansi",
+					"axisLabel": "date",
 					"lowerBound": "2015-09-21",
 					"upperBound": "2015-09-21",
 					"uomLabel": "d"
@@ -144,11 +144,11 @@
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_P3_E_55_1D",
 				"srsName": "http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-				"axisLabels": ["ansi"],
+				"axisLabels": ["date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_PS_P1_DATE_55_1D",
-					"axisLabel": "ansi",
+					"axisLabel": "date",
 					"lowerBound": "2015-09-22",
 					"upperBound": "2015-09-22",
 					"uomLabel": "d"
@@ -209,11 +209,11 @@
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_P4_E_55_1D",
 				"srsName": "http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-				"axisLabels": ["ansi"],
+				"axisLabels": ["date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_P4_DATE_55_1D",
-					"axisLabel": "ansi",
+					"axisLabel": "date",
 					"lowerBound": "2015-09-23",
 					"upperBound": "2015-09-23",
 					"uomLabel": "d"

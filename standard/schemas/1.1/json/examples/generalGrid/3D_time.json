@@ -10,7 +10,7 @@
          "type": "GeneralGridCoverage",
          "id": "examples:CIS_DS_GG_25_3D",
          "srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-         "axisLabels": ["Lat", "Lon", "ansi"],
+         "axisLabels": ["Lat", "Lon", "date"],
          "axis": [{
             "type": "RegularAxis",
             "id": "examples:CIS_DS_GG_LAT_25_3D",
@@ -30,7 +30,7 @@
          },{
             "type": "RegularAxis",
             "id": "examples:CIS_DS_GG_DATE_25_3D",
-            "axisLabel": "ansi",
+            "axisLabel": "date",
             "lowerBound": "2015-12-01",
             "upperBound": "2015-12-03",
             "uomLabel": "d",
