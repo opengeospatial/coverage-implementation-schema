@@ -157,21 +157,19 @@ a| In the envelope of a coverage instantiating class _coverage_, if present, the
 
 |===
 
-NOTE: This definition relaxes the axisLabels handling as per GMLCOV/CIS 1.0 where the identifiers referenced in axisLabels had to be identical to the corresponding axisAbbrev value in the CRS definition. In CIS 1.1, coverage axisLabels and CRS axisAbbrev are decoupled so that there is no such dependency any longer. This definition is backwards compatible, i.e., coverages can continue to use CRS axisAbbrev values; note, though, that axisAbbrev values in subsequent versions of a CRS may change without notice, so the correspondence may get lost over time.
+NOTE: This definition relaxes the axisLabels handling as per GMLCOV/CIS 1.0 where the identifiers referenced in axisLabels had to be identical to the corresponding axisAbbrev value in the CRS definition. In CIS 1.1, coverage axisLabels and CRS axisAbbrev are decoupled so that there is no such dependency any longer. This definition is backwards compatible, i.e., coverages can continue to use CRS axisAbbrev values; note, though, that axisAbbrev values in subsequent versions of a CRS may change without notice (this has happened in EPSG), so the correspondence may get lost over time.
 
 [%unnumbered]
 [[rec_1]]
 |===
 | Recommendation 1
 
-a| When possible, although they are now matched by position, axes SHOULD still be named with the corresponding `axisAbbrev` rather than arbitrary names
- to maintain clarity and maximize interoperability. An exception to this recommendation would be with the temporal reference system
- http://www.opengis.net/def/crs/OGC/0/UnixTime and http://www.opengis.net/def/crs/OGC/0/AnsiDate in particular, where `time` and `date` are preferred over
- `unix` and `ansi`, respectively, as it better conveys their usage as generic TRS not necessarily associated with the UNIX or ANSI epochs.
-|===
+a| When possible axes SHOULD be named with the corresponding `axisAbbrev` also when using CIS 1.1 to maintain clarity.
+ |===
 
-
-Example:    The following envelope, encoded in XML, utilizes EPSG 4326 with two axis labels, “Lat” and “Long.” These labels correspond to the CRS axis abbreviations of EPSG v8.5, but not to EPSG v8.9.2 where the axis abbreviation for Longitude has been changed to “Lon”. In CIS 1.1, this is not an issue because (i) CRS axes are ordered and (ii) values in axisLabels are matched by position, so axis label “Long” is unambiguously associated with CRS axis abbreviated as “Lon.”
+Examples:
+ - The following envelope, encoded in XML, utilizes EPSG 4326 with two axis labels, “Lat” and “Long.” These labels correspond to the CRS axis abbreviations of older EPSG versions like v8.5, but not to EPSG v8.9.2 where the axis abbreviation for Longitude has been changed to “Lon”. With CIS 1.0 this EPSG change invalidates existing coverage instances whereas with CIS 1.1 this is not an issue because axis label “Long” is unambiguously associated with CRS axis abbreviated as “Lon” by position.
+ - The temporal reference systems http://www.opengis.net/def/crs/OGC/0/UnixTime and http://www.opengis.net/def/crs/OGC/0/AnsiDate historically have beend defined with axis abbreviations `unix` and `ansi`, rather than, eg., `time` and `date`. For reasons of intuitiveness (and without affecting interoperability) it has become common practice to call axes `time` and `date` based on the matching rule defined in CIS 1.1. Note that other time CRSs are important as well, such as geological time with uom = 1 million years, axis direction = backwards and epoch (datum) = 1950.
 
 [%unnumbered]
 [source, xml]
