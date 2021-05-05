@@ -14,7 +14,7 @@
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_PS_P1_E_50_3D",
 				"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
-				"axisLabels": ["Lat", "Lon", "ansi"],
+				"axisLabels": ["Lat", "Lon", "date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_PS_P1_LAT_50_3D",
@@ -32,7 +32,7 @@
 				},{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_PS_P1_D_50_3D",
-					"axisLabel": "ansi",
+					"axisLabel": "date",
 					"lowerBound": 100003,
 					"upperBound": 100003,
 					"uomLabel": "d"
@@ -46,8 +46,8 @@
 				"@context": "http://localhost/json-ld/envelope-context.json",
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_PS_P2_E_50_3D",
-				"srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
-				"axisLabels": ["Lat", "Lon", "d"],
+				"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
+				"axisLabels": ["Lat", "Lon", "date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_PS_P2_LAT_50_3D",
@@ -79,8 +79,8 @@
 				"@context": "http://localhost/json-ld/envelope-context.json",
 				"type": "EnvelopeByAxisType",
 				"id": "examples:CIS_PS_P3_E_50_3D",
-				"srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
-				"axisLabels": ["Lat", "Lon", "d"],
+				"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
+				"axisLabels": ["Lat", "Lon", "date"],
 				"axis": [{
 					"type": "AxisExtentType",
 					"id": "examples:CIS_PS_P3_LAT_50_3D",
