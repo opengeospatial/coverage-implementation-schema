@@ -1,36 +1,36 @@
 {
 	"@context": ["http://localhost/json-ld/coverage-context.json", {"examples": "http://www.opengis.net/cis/1.1/examples/"}],
-	"type": "CoverageByPartitioningType",
+	"type": "CoverageByPartitioning",
 	"id": "examples:CIS_50_3D",
 	"partitionSet":{
 		"@context": "http://localhost/json-ld/partitionset-context.json",
-		"type": "PartitionSetType",
+		"type": "PartitionSet",
 		"id": "examples:CIS_PS_50_3D",
 		"partition":[{
-			"type": "PartitionRefType",
+			"type": "PartitionRef",
 			"id": "examples:CIS_PS_P1_50_3D",
 			"envelope":{
 				"@context": "http://localhost/json-ld/envelope-context.json",
-				"type": "EnvelopeByAxisType",
+				"type": "EnvelopeByAxis",
 				"id": "examples:CIS_PS_P1_E_50_3D",
 				"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
 				"axisLabels": ["Lat", "Lon", "date"],
 				"axis": [{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P1_LAT_50_3D",
 					"axisLabel": "Lat",
 					"lowerBound": -80,
 					"upperBound": -70,
 					"uomLabel": "deg"
 				},{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P1_LONG_50_3D",
 					"axisLabel": "Lon",
 					"lowerBound": 0,
 					"upperBound": 10,
 					"uomLabel": "deg"
 				},{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P1_D_50_3D",
 					"axisLabel": "date",
 					"lowerBound": 100003,
@@ -40,30 +40,30 @@
 			},
 			"coverageRef": "http://www.acme.com/CIS_002"
 		},{
-			"type": "PartitionRefType",
+			"type": "PartitionRef",
 			"id": "examples:CIS_PS_P2_50_3D",
 			"envelope":{
 				"@context": "http://localhost/json-ld/envelope-context.json",
-				"type": "EnvelopeByAxisType",
+				"type": "EnvelopeByAxis",
 				"id": "examples:CIS_PS_P2_E_50_3D",
 				"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
 				"axisLabels": ["Lat", "Lon", "date"],
 				"axis": [{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P2_LAT_50_3D",
 					"axisLabel": "Lat",
 					"lowerBound": -80,
 					"upperBound": -70,
 					"uomLabel": "deg"
 				},{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P2_LONG_50_3D",
 					"axisLabel": "Lon",
 					"lowerBound": 0,
 					"upperBound": 10,
 					"uomLabel": "deg"
 				},{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P2_D_50_3D",
 					"axisLabel": "date",
 					"lowerBound": 100004,
@@ -73,30 +73,30 @@
 			},
 			"coverageRef": "CIS_003"
 		},{
-			"type": "PartitionRefType",
+			"type": "PartitionRef",
 			"id": "examples:CIS_PS_P3_50_3D",
 			"envelope":{
 				"@context": "http://localhost/json-ld/envelope-context.json",
-				"type": "EnvelopeByAxisType",
+				"type": "EnvelopeByAxis",
 				"id": "examples:CIS_PS_P3_E_50_3D",
 				"srsName": "http://www.opengis.net/def/crs-compound?1=http://www.opengis.net/def/crs/EPSG/0/4326&2=http://www.opengis.net/def/crs/OGC/0/AnsiDate",
 				"axisLabels": ["Lat", "Lon", "date"],
 				"axis": [{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P3_LAT_50_3D",
 					"axisLabel": "Lat",
 					"lowerBound": -80,
 					"upperBound": -70,
 					"uomLabel": "deg"
 				},{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P3_LONG_50_3D",
 					"axisLabel": "Lon",
 					"lowerBound": 0,
 					"upperBound": 10,
 					"uomLabel": "deg"
 				},{
-					"type": "AxisExtentType",
+					"type": "AxisExtent",
 					"id": "examples:CIS_PS_P3_D_50_3D",
 					"axisLabel": "date",
 					"lowerBound": 100005,
@@ -109,17 +109,22 @@
 	},
 	"rangeType": {
 		"@context": "http://localhost/json-ld/rangetype-context.json",
-		"type": "DataRecordType",
-		"id": "examples:CIS_RT_50_3D",
-		"field":[{
-			"type": "QuantityType",
-			"id": "examples:CIS_RT_F_50_3D",
-			"definition": "ogcType:unsignedInt",
-			"uom": {
-				"type": "UnitReference",
-				"id": "examples:CIS_RT_F_UOM__50_3D",
-				"code": "10^0"
-			}
-		}]
+		"type": "DataRecord",
+		"id": "examples_CIS_RT_50_3D",
+      "field": [
+         {
+            "type": "Quantity",
+            "name": "band1",
+            "description": "detailed description of the band",
+            "definition": "http://opengis.net/def/property/OGC/0/Radiance",
+            "encodingInfo": {
+               "dataType": "http://www.opengis.net/def/dataType/OGC/0/unsignedInt",
+               "significantBits": 12,
+               "scaledBy": 4096.0,
+               "offsetBy": 0
+            },
+            "uom": { "code": "W.m-2.sr-1.nm-1" }
+         }
+      ]
 	}
 }

@@ -1,10 +1,10 @@
 {
 	"@context": ["http://localhost/json-ld/coverage-context.json", {"examples": "http://www.opengis.net/cis/1.1/examples/"}],
-	"type": "CoverageByPartitioningType",
+	"type": "CoverageByPartitioning",
 	"id": "examples:CIS_61_1D",
 	"partitionSet":{
 		"@context": "http://localhost/json-ld/partitionset-context.json",
-		"type": "PartitionSetType",
+		"type": "PartitionSet",
 		"id": "examples:CIS_PS_61_1D",
 		"positionValuePair":[
 			{ "type": "PVPType", "id": "examples:CIS_PVP1_61_1D", "coordinate": ["2015-09-20"], "value": [0]},
@@ -15,18 +15,22 @@
 	},
 	"rangeType": {
 		"@context": "http://localhost/json-ld/rangetype-context.json",
-		"type": "DataRecordType",
-		"id": "examples:CIS_RT_61_1D",
-		"field":[{
-			"type": "QuantityType",
-			"id": "examples:CIS_RT_F_61_1D",
-			"name": "singleBand",
-			"definition": "ogcType:unsignedInt",
-			"uom": {
-				"type": "UnitReference",
-				"id": "examples:CIS_RT_F_UOM__61_1D",
-				"code": "10^0"
-			}
-		}]
+		"type": "DataRecord",
+		"id": "examples_CIS_RT_61_1D",
+      "field": [
+         {
+            "type": "Quantity",
+            "name": "singleBand",
+            "description": "detailed description of the band",
+            "definition": "http://opengis.net/def/property/OGC/0/Radiance",
+            "encodingInfo": {
+               "dataType": "http://www.opengis.net/def/dataType/OGC/0/unsignedInt",
+               "significantBits": 12,
+               "scaledBy": 4096.0,
+               "offsetBy": 0
+            },
+            "uom": { "code": "W.m-2.sr-1.nm-1" }
+         }
+      ]
 	}
 }

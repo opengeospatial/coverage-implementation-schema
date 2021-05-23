@@ -1,22 +1,22 @@
 {
 	"@context": ["http://localhost/json-ld/coverage-context.json", {"examples": "http://www.opengis.net/cis/1.1/examples/"}],
-	"type": "CoverageByDomainAndRangeType",
+	"type": "CoverageByDomainAndRange",
 	"id": "examples:CIS_15_2D",
 	"envelope": {
 		"@context": "http://localhost/json-ld/envelope-context.json",
-		"type": "EnvelopeByAxisType",
+		"type": "EnvelopeByAxis",
 		"id": "examples:CIS_EV_15_2D",
 		"srsName": "http://www.opengis.net/def/crs/OGC/0/Index2D",
 		"axisLabels": ["Lat", "Lon"],
 		"axis": [{
-			"type": "AxisExtentType",
+			"type": "AxisExtent",
 			"id": "examples:CIS_EV_LAT_15_2D",
 			"axisLabel": "Lat",
 			"lowerBound": -80,
 			"upperBound": -70,
 			"uomLabel": "deg"
 		},{
-			"type": "AxisExtentType",
+			"type": "AxisExtent",
 			"id": "examples:CIS_EV_LONG_15_2D",
 			"axisLabel": "Lon",
 			"lowerBound": 0,
@@ -26,15 +26,15 @@
 	},
 	"domainSet": {
 		"@context": "http://localhost/json-ld/domainset-context.json",
-		"type": "DomainSetType",
+		"type": "DomainSet",
 		"id": "examples:CIS_DS_15_2D",
 		"generalGrid":{
-			"type": "GeneralGridCoverageType",
+			"type": "GeneralGridCoverage",
 			"id": "examples:CIS_DS_GG_15_2D",
 			"srsName": "http://www.opengis.net/def/crs/EPSG/0/4326",
 			"axisLabels": ["Lat", "Lon"],
 			"axis": [{
-				"type": "RegularAxisType",
+				"type": "RegularAxis",
 				"id": "examples:CIS_DS_GG_LAT_15_2D",
 				"axisLabel": "Lat",
 				"lowerBound": -80,
@@ -42,7 +42,7 @@
 				"uomLabel": "deg",
 				"resolution": 5
 			},{
-				"type": "RegularAxisType",
+				"type": "RegularAxis",
 				"id": "examples:CIS_DS_GG_LONG_15_2D",
 				"axisLabel": "Lon",
 				"lowerBound": 0,
@@ -51,18 +51,18 @@
 				"resolution": 5
 			}],
 			"gridLimits": {
-				"type": "GridLimitsType",
+				"type": "GridLimits",
 				"id": "examples:CIS_DS_GG_GL_15_2D",
 				"srsName": "http://www.opengis.net/def/crs/OGC/0/Index2D",
 				"axisLabels": ["i", "j"],
 				"axis": [{
-					"type": "IndexAxisType",
+					"type": "IndexAxis",
 					"id": "examples:CIS_DS_GG_GL_I_15_2D",
 					"axisLabel": "i",
 					"lowerBound": 0,
 					"upperBound": 2
 				},{
-					"type": "IndexAxisType",
+					"type": "IndexAxis",
 					"id": "examples:CIS_DS_GG_GL_J_15_2D",
 					"axisLabel": "j",
 					"lowerBound": 0,
@@ -73,27 +73,32 @@
 	},
 	"rangeSet": {
 		"@context": "http://localhost/json-ld/rangeset-context.json",
-		"type": "RangeSetType",
+		"type": "RangeSet",
 		"id": "examples:CIS_RS_15_2D",
 		"dataBlock": {
 			"id": "examples:CIS_RS_DB_15_2D",
-			"type": "VDataBlockType",
+			"type": "VDataBlock",
 			"values": [1,2,3,4,5,6,7,8,9]
 		}
 	},
 	"rangeType": {
 		"@context": "http://localhost/json-ld/rangetype-context.json",
-		"type": "DataRecordType",
+		"type": "DataRecord",
 		"id": "examples:CIS_RT_15_2D",
-		"field":[{
-			"type": "QuantityType",
-			"id": "examples:CIS_RT_F_15_2D",
-			"definition": "ogcType:unsignedInt",
-			"uom": {
-				"type": "UnitReference",
-				"id": "examples:CIS_RT_F_UOM_15_2D",
-				"code": "10^0"
-			}
-		}]
+      "field": [
+         {
+            "type": "Quantity",
+            "name": "band1",
+            "description": "detailed description of the band",
+            "definition": "http://opengis.net/def/property/OGC/0/Radiance",
+            "encodingInfo": {
+               "dataType": "http://www.opengis.net/def/dataType/OGC/0/unsignedInt",
+               "significantBits": 12,
+               "scaledBy": 4096.0,
+               "offsetBy": 0
+            },
+            "uom": { "code": "W.m-2.sr-1.nm-1" }
+         }
+      ]
 	}
 }
