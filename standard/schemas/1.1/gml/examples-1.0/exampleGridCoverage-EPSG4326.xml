@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Example for a rectified grid coverage
+<!-- Example for a grid coverage (EPSG:4326 SRS)
      as defined in the GML 3.2.1 Application Schema for Coverages.
      Last updated 2012-feb-06
 -->
