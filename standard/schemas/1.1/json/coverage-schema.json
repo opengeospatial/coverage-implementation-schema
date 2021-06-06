@@ -368,15 +368,16 @@
                "field":{
                   "type": "array",
                   "items": {
-                     "title": "quantity",
-                     "description": "quantity",
+                     "title": "DataRecord field",
+                     "description": "e.g. Quantity or Count",
                      "type": "object",
                      "required": [ "type"],
                      "properties": {
-                        "type": { "enum": [ "Quantity"] },
+                        "type": { "enum": [ "Quantity", "Count" ] },
                         "id": { "type": "string" , "format":"uri"},
                         "name": { "type": "string" },
-                        "definition": { "type": "string", "format":"uri"},
+                        "definition": { "type": "string", "format":"uri" },
+                        "description": { "type": "string" },
                         "uom": {
                            "title": "units of measure",
                            "description": "units of measure",
