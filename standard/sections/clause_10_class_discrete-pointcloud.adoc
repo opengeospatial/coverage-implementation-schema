@@ -21,7 +21,7 @@ Class _discrete-pointcloud_ defines coverages which represent sets of multi-dime
 
 |===
 
-While this definition is based on GML it does not preclude a GML encoding (through class _gml-coverage_); the same structures may be represented in any other suitable format (using class _other-format-coverage_).
+While this definition is based on GML it does not prescribe a GML encoding (through class _gml-coverage_); the same structures may be represented in any other suitable format (using class _other-format-coverage_).
 
 [#img_uml_of_cis_multipointcoverage,reftext='{figure-caption} {counter:figure-num}']
 .UML diagram of CIS::MultiPointCoverage structure

@@ -21,4 +21,4 @@ This class _discrete-mesh_ establishes those discrete coverages which have a non
 
 |===
 
-While this definition is based on the _conceptual_ model of GML it does not preclude a GML _encoding_ (through class _gml-coverage_); the same structures may be represented in any other suitable format (using class _other-format-coverage_).
+While this definition is based on the _conceptual_ model of GML it does not prescribe a GML _encoding_ (through class _gml-coverage_); the same structures may be represented in any other suitable format (using class _other-format-coverage_).
